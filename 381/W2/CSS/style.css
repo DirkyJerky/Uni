@@ -50,11 +50,10 @@
 }
 
 #inside-pic {
-  width: 50px;
   height: 150px;
 }
 
-#message {
+#message, #guess-message {
   color: black;
   font-family: Courier;
   font-size: 12pt;

@@ -4,7 +4,7 @@
   	<meta charset="utf-8"> <!-- required element in HTML5 -->
 	
 	<title>Birthday Card</title>
-	<link rel="stylesheet" src="CSS/style.css">   <!-- link to external css file -->
+	<link rel="stylesheet" href="CSS/style.css">   <!-- link to external css file -->
 	<script src="JS/script.js"></script> 		  <!-- link to external js file -->
 
   </head>
@@ -15,7 +15,7 @@
     
       <p id="outside-title">Happy Birthday!</p>
 
-      <img id="outside-pic" src="img/robot.png" alt="robot img">  <!-- replace img here -->
+      <img id="outside-pic" src="img/Box.png" alt="robot img">  <!-- replace img here -->
 	  
       <p><button onclick="open_card()">Click to open</button></p>
       
@@ -25,12 +25,19 @@
     
       <p id="inside-title"> Happy Birthday! </p>
       
-      <img id="inside-pic" src="img/girl.png" alt="girl img"> <!-- replace img here -->
+      <img id="inside-pic" src="img/Cake.jpg" alt="girl img"> <!-- replace img here -->
       
       <p id="message">
-        Your message here! <!-- modify the text content here to add specific birthday message -->
+        Happy Day to You!
       </p>
 
+      <p id="guess-message"></p>
+
+      <p id="guess-buttons">
+        <button onclick="guess_older()">No, im older</button>
+        <button onclick="guess_younger()">No, im younger</button>
+        <button onclick="guess_correct()">Yes!</button>
+      </p>
       <p>
         <button onclick="close_card()">Click to close</button>
       </p>
