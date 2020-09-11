@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Auto Shop - Used Cars</title>
+
+    <!-- Bootstrap -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<style> 
+		 td{ padding: 5px; margin: 5px;}
+		.add-item { height: 28px; width: 80px; padding: 0; }
+		.clm-label { background: #333; color: #fff;}
+		
+	</style>
+</head>
+<body class='container'>
+<div class='row' >
+	<div class='col-md-9 '  >
+	   <h2>Car List</h2>
+		<table class='table table-bordered' id='car-list'>
+		<thead>
+		<tr class='clm-label'>
+		   <th class='clm-label'>Stock ID</th>
+		   <th class='clm-label'>Make</th>
+		   <th class='clm-label'>Model</th>
+		   <th class='clm-label'>Year</th>
+		   <th class='clm-label'>Type</th>
+		   <th class='clm-label'>Color</th>
+		   <th class='clm-label'>Price</th>
+		   <th class='clm-label'>Mileage</th>
+		   <th class='clm-label'>Select</th>
+		 </tr> 
+		 </thead>
+		 <tbody>
+		   <tr class='car-item' id='l-0'>
+				<td id='id-0'>1001</td>
+				<td id='make-0'>Toyota</td>
+				<td id='model-0'>Camry</td>
+				<td id='year-0'>2011</td>
+				<td id='type-0'>Sedan</td>
+				<td id='color-0'>Gray</td>
+				<td id='price-0'>17555</td>
+				<td id='mileage-0'>55060</td>
+				<td id='select-0'><button type='button' value='0' id='cb-0' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-1'>
+				<td id='id-1'>1002</td>
+				<td id='make-1'>Volvo</td>
+				<td id='model-1'>s40</td>
+				<td id='year-1'>2013</td>
+				<td id='type-1'>Sedan</td>
+				<td id='color-1'>Black</td>
+				<td id='price-1'>15575</td>
+				<td id='mileage-1'>20350</td>
+				<td id='select-1'><button type='button' value='1' id='cb-1' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-2'>
+				<td id='id-2'>1251</td>
+				<td id='make-2'>Toyota</td>
+				<td id='model-2'>Sienna</td>
+				<td id='year-2'>2008</td>
+				<td id='type-2'>Minivan</td>
+				<td id='color-2'>Gray</td>
+				<td id='price-2'>15775</td>
+				<td id='mileage-2'>70000</td>
+				<td id='select-2'><button type='button' value='2' id='cb-2' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-3'>
+				<td id='id-3'>1321</td>
+				<td id='make-3'>Porsche</td>
+				<td id='model-3'>Panamera</td>
+				<td id='year-3'>2012</td>
+				<td id='type-3'>Hatchback</td>
+				<td id='color-3'>Red</td>
+				<td id='price-3'>104250</td>
+				<td id='mileage-3'>10567</td>
+				<td id='select-3'><button type='button' value='3' id='cb-3' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-4'>  
+				<td id='id-4'>1904</td>
+				<td id='make-4'>Honda</td>
+				<td id='model-4'>Accord</td>
+				<td id='year-4'>2009</td>
+				<td id='type-4'>Sedan</td>
+				<td id='color-4'>White</td>
+				<td id='price-4'>13370</td>
+				<td id='mileage-4'>35000</td>
+				<td id='select-4'><button type='button' value='4' id='cb-4' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-5'>  
+				<td id='id-5'>1855</td>
+				<td id='make-5'> Toyota </td>
+				<td id='model-5'> Highlander </td>
+				<td id='year-5'>2008</td>
+				<td id='type-5'>SUV</td>
+				<td id='color-5'>Silver</td>
+				<td id='price-5'>18555</td>
+				<td id='mileage-5'>55060</td>
+				<td id='select-5'><button type='button' value='5' id='cb-5' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-6'>  
+				<td id='id-6'>1543</td>
+				<td id='make-6'> Ford </td>
+				<td id='model-6'> Fusion </td>
+				<td id='year-6'>2011</td>
+				<td id='type-6'>Sedan</td>
+				<td id='color-6'>Black</td>
+				<td id='price-6'>13575</td>
+				<td id='mileage-6'>90350</td>
+				<td id='select-6'><button type='button' value='6' id='cb-6' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>	
+			<tr class='car-item' id='l-7'>  
+				<td id='id-7'>1345</td>
+				<td id='make-7'> Toyota </td>
+				<td id='model-7'> Sienna </td>
+				<td id='year-7'>2011</td>
+				<td id='type-7'>Minivan</td>
+				<td id='color-7'>Gray</td>
+				<td id='price-7'>25775</td>
+				<td id='mileage-7'>70000</td>
+				<td id='select-7'><button type='button' value='7' id='cb-7' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>	
+			<tr class='car-item' id='l-8'>  
+				<td id='id-8'>2133</td>
+				<td id='make-8'> Dodge </td>
+				<td id='model-8'> Caravan </td>
+				<td id='year-8'>2012</td>
+				<td id='type-8'>Minivan</td>
+				<td id='color-8'>Red</td>
+				<td id='price-8'>30250</td>
+				<td id='mileage-8'>17567</td>
+				<td id='select-8'><button type='button' value='8' id='cb-8' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>	
+			<tr class='car-item' id='l-9'>  
+				<td id='id-9'>2999</td>
+				<td id='make-9'> Lexus </td>
+				<td id='model-9'> LFA</td>
+				<td id='year-9'>2012</td>
+				<td id='type-9'>coupe</td>
+				<td id='color-9'>Red</td>
+				<td id='price-9'>381370</td>
+				<td id='mileage-9'>3500</td>
+				<td id='select-9'><button type='button' value='9' id='cb-9' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+			<tr class='car-item' id='l-10'>  
+				<td id='id-10'>3001</td>
+				<td id='make-10'> Ferrari</td>
+				<td id='model-10'> Rubino </td>
+				<td id='year-10'>2012</td>
+				<td id='type-10'>coupe</td>
+				<td id='color-10'>Red</td>
+				<td id='price-10'>354370</td>
+				<td id='mileage-10'>5500</td>
+				<td id='select-10'><button type='button' value='10' id='cb-10' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>	
+			<tr class='car-item' id='l-11'>  
+				<td id='id-11'>4002</td>
+				<td id='make-11'> Audi</td>
+				<td id='model-11'> R8 </td>
+				<td id='year-11'>2012</td>
+				<td id='type-11'>convertible</td>
+				<td id='color-11'>Black</td>
+				<td id='price-11'>181370</td>
+				<td id='mileage-11'>4500</td>
+				<td id='select-11'><button type='button' value='11' id='cb-11' class='btn btn-primary add-item'>Add</button>
+				</td>
+			</tr>
+		
+		 </tbody>
+		</table>
+	</div>
+	<div class='col-md-3'>
+		<h2>Shopping Cart</h2>
+		<table class='table table-bordered' id='mycart'>
+			<tr>
+				<td class='clm-label'>Make</td><td class='clm-label'>Model</td><td class='clm-label'>Price</td>
+			</tr>
+		</table>
+	</div>
+</div>
+	<div class='col-md-9'>
+		<p style='float: right;'><button id='p4' class='btn btn-primary'>Display Invoice</button></p>
+		<table class='table' >
+			<tr><td class='col-xs-4'>Total number of cars: </td><td class='col-xs-2' id='total-items'>0</td></tr>
+			<tr><td class='col-xs-4'>Subtotal: </td><td class='col-xs-2' id='sub-total'>0</td></tr>
+			<tr><td class='col-xs-4'>Taxes (6%): </td><td class='col-xs-2' id='taxes'>0</td></tr>
+			<tr><td class='col-xs-4'>Registration fee (5%): </td><td class='col-xs-2' id='registration'>0</td></tr>
+			<tr><td class='col-xs-4'>Total due: </td><td class='col-xs-2' id='total'>0</td></tr>
+		</table>
+	</div>
+	<div class='col-md-9'>
+		<p style='float: right;'><button id='p2' class='btn btn-primary' >Display all Minivans</button></p>
+		  <table class='table table-bordered' id='minivan-list'>
+			<thead>
+				<tr class='clm-label'>
+				  <th class='clm-label'>Stock ID</th>
+				  <th class='clm-label'>Make</th>
+				  <th class='clm-label'>Model</th>
+				  <th class='clm-label'>Year</th>
+				  <th class='clm-label'>Type</th>
+				  <th class='clm-label'>Color</th>
+				  <th class='clm-label'>Price</th>
+				  <th class='clm-label'>Mileage</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		  </table>
+	</div>
+<script src="auto_shop.js"></script>
+</body>
+</html>
+
