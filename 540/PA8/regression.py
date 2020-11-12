@@ -122,7 +122,7 @@ def iterate_gradient(dataset, cols, betas, T, eta):
         return out
     
     betas = np.copy(betas).astype(float)
-    print(gen_out_str(0, regression(dataset, cols, betas), betas))
+    # print(gen_out_str(0, regression(dataset, cols, betas), betas))
     for i in range(1,T+1):
         betas -= eta * gradient_descent(dataset, cols, betas)
 
@@ -197,7 +197,36 @@ def sgd(dataset, cols, betas, T, eta):
     RETURNS:
         None
     """
-    pass
+    def gen_out_str(index, reg, betas):
+        out = str(index)
+        out += ' '
+        out += '{:.2f}'.format(reg)
+        for beta in betas:
+            out += ' '
+            out += '{:.2f}'.format(beta)
+        return out
+
+    gen = random_index_generator(0, dataset.shape[0])
+    def sto_gradient_descent(dataset, cols, betas):
+        random_item = np.copy(dataset[next(gen), :])
+
+        final_coeffs = np.copy(random_item)[cols]
+        final_coeffs = np.insert(final_coeffs, 0, 1.)
+
+        betas = np.copy(betas)
+        betas = np.insert(betas, 0, -1.)  # coeff for y
+
+        y = random_item[0]
+        random_item = random_item[cols]
+        random_item = np.hstack(([y, 1], random_item))
+
+        return 2 * final_coeffs * np.dot(betas, random_item)
+
+    betas = np.copy(betas).astype(float)
+    for i in range(1,T+1):
+        betas -= eta * sto_gradient_descent(dataset, cols, betas)
+
+        print(gen_out_str(i, regression(dataset, cols, betas), betas))
 
 
 if __name__ == '__main__':
