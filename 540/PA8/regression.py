@@ -141,8 +141,12 @@ def compute_betas(dataset, cols):
     RETURNS:
         A tuple containing corresponding mse and several learned betas
     """
-    betas = None
-    mse = None
+    X = np.copy(dataset)
+    y = X[:, [0]]
+    X = X[:, cols]
+    X = np.hstack((np.ones((dataset.shape[0],1)), X))
+    betas = np.matmul(np.matmul(np.linalg.inv(np.matmul(X.T, X)), X.T), y).reshape((len(cols)+1))
+    mse = regression(dataset, cols, betas)
     return (mse, *betas)
 
 
@@ -159,8 +163,10 @@ def predict(dataset, cols, features):
     RETURNS:
         The predicted body fat percentage value
     """
-    result = None
-    return result
+    betas = list(compute_betas(dataset, cols))[1:]
+    features = np.copy(features)
+    features = np.insert(features, 0, 1., axis=0)
+    return np.dot(betas, features)
 
 
 def random_index_generator(min_val, max_val, seed=42):
