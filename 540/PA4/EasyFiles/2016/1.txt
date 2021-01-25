@@ -1,6 +1,0 @@
-a
-dog
-chases
-a
-cat
-.

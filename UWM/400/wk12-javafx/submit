@@ -1,0 +1,16 @@
+PROJECTNAME=module12JavaFXActivity
+if [[ $1 == --checklatest ]]; then
+    echo "Checking timestamp of latest submission."
+    read -p 'Your CSL username: ' USERNAME
+    #for folder in
+    ssh ${USERNAME}@best-linux.cs.wisc.edu -t "python3 /p/course/cs400/submissions/getlatest.py ${PROJECTNAME} ${USERNAME}"
+else
+    echo "Starting new submission."
+    SUBMISSION="${PROJECTNAME}_submission$(date +%Y%m%d_%H%M%S)"
+    read -p 'Your CSL username: ' USERNAME
+    echo "Preparing submission for ${USERNAME}. Please type your CSL password in the prompt below."
+    rsync -r * ${USERNAME}@best-linux.cs.wisc.edu:/p/course/cs400/submissions/${USERNAME}/${SUBMISSION}/
+    if [[ $? -eq 0 ]]; then
+        echo "Submission was successful."
+    fi
+fi
