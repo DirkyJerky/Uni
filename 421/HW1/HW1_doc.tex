@@ -1,0 +1,292 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1inch. 
+\usepackage{datetime}
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+%Custom commands 
+\newcommand{\der}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+
+%Custom symbols
+\newcommand{\linediv}{\noindent\rule{6.5in}{2pt}}
+\newcommand{\linedivm}{\noindent\rule{6.5in}{1pt}}
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#1}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{2}{2}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+    
+\subsection*{Exercise One:} 
+    
+a)
+
+\linediv
+
+\begin{verbatim}
+If $f(x) = x^n$,  then 
+$$
+f^\prime(x) = n x^{n-1}.
+$$
+\end{verbatim}
+
+\linedivm
+
+If $f(x) = x^n$,  then 
+$$
+f^\prime(x) = n x^{n-1}.
+$$
+
+\linediv
+ 
+\noindent b)
+
+\linediv
+
+\begin{verbatim}
+If $n \neq -1$,  then 
+$$
+\int x^{n} dx = \frac{1}{n+1} x^{n+1} + C.
+$$
+\end{verbatim}
+
+\linedivm
+
+If $n \neq -1$,  then 
+$$
+\int x^{n} dx = \frac{1}{n+1} x^{n+1} + C.
+$$
+
+\linediv
+
+\noindent c)
+
+\linediv
+
+\begin{verbatim}
+The derivative of a function $f$ at $x=a$ is
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}.
+$$
+\end{verbatim}
+
+\linedivm
+
+The derivative of a function $f$ at $x=a$ is
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}.
+$$
+
+\linediv
+
+    
+\subsection*{Exercises Two:}     
+    
+\noindent a)
+
+\linediv
+
+\begin{verbatim}
+The number $e$ is defined by
+$$
+e = \lim_{n \to \inf} \left( 1 + \frac{1}{n} \right) ^ {n}.
+$$
+\end{verbatim}
+
+\linedivm
+
+The number $e$ is defined by
+$$
+e = \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right) ^ {n}.
+$$
+
+\linediv
+
+\noindent b)
+
+\linediv
+
+\begin{verbatim}
+If $f$ is a continuous function, then
+$$
+\frac{d}{dx} \left[ \int_{a}^{x} f(t) dt \right] = f(x).
+$$
+\end{verbatim}
+
+\linedivm
+
+If $f$ is a continuous function, then
+$$
+\frac{d}{dx} \left[ \int_{a}^{x} f(t) dt \right] = f(x).
+$$
+
+\linediv
+ 
+\subsection*{Exercise Three:}
+
+\linediv
+
+\begin{verbatim}
+\begin{center}
+    \begin{tabular}{|rl|cc|}
+    \hline
+    First Name & Last Name & Ice Cream Flavor & Number of Scoops \\
+    \hline
+    Alexa & Leal & Vanilla & $4$ \\
+    Julia & Maschi & Chocolate & $2$ \\
+    Johnny & Tran & Strawberry & $18$ \\
+    Geoff & Yoerger & Chocolate Malt & $\infty$ \\
+    \hline
+    \end{tabular}
+\end{center}
+\end{verbatim}
+
+\linedivm
+
+\begin{center}
+    \begin{tabular}{|rl|cc|}
+    \hline
+    First Name & Last Name & Ice Cream Flavor & Number of Scoops \\
+    \hline
+    Alexa & Leal & Vanilla & $4$ \\
+    Julia & Maschi & Chocolate & $2$ \\
+    Johnny & Tran & Strawberry & $18$ \\
+    Geoff & Yoerger & Chocolate Malt & $\infty$ \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\linediv
+
+\subsection*{Exercise Four:}
+
+\linediv
+
+\begin{verbatim}
+$$
+\det
+\begin{pmatrix}
+    a & b \\
+    c & d \\
+\end{pmatrix}
+= ad - bc.
+$$
+\end{verbatim}
+
+\linedivm
+
+$$
+\det
+\begin{pmatrix}
+    a & b \\
+    c & d \\
+\end{pmatrix}
+= ad - bc.
+$$
+
+\linediv
+
+\subsection*{Exercise Five:}
+
+\noindent 1)
+
+\linediv
+
+\begin{verbatim}
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Nb}{\mathbb{N}}
+\newcommand{\Zb}{\mathbb{Z}}
+\newcommand{\Qb}{\mathbb{Q}}
+\newcommand{\Cb}{\mathbb{C}}
+
+$$
+\Nb \subset \Zb \subset \Qb \subset \Rb \subset \Cb
+$$
+\end{verbatim}
+
+\linedivm
+
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Nb}{\mathbb{N}}
+\newcommand{\Zb}{\mathbb{Z}}
+\newcommand{\Qb}{\mathbb{Q}}
+\newcommand{\Cb}{\mathbb{C}}
+
+$$
+\Nb \subset \Zb \subset \Qb \subset \Rb \subset \Cb
+$$
+
+\linediv
+
+\noindent 2)
+
+\linediv
+
+\begin{verbatim}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+
+If $z = x^2 + xy + y^2$, then
+$$
+\pder{z}{x} = 2x + y
+$$
+\end{verbatim}
+
+\linedivm
+
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+
+If $z = x^2 + xy + y^2$, then
+$$
+\pder{z}{x} = 2x + y
+$$
+
+\linediv
+ 
+\subsection*{Exercise Six:}
+    
+\linediv
+
+\begin{verbatim}
+If $f(x) = x^2$, then
+\begin{align*}
+    f'(a) & = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} \\
+    & = \lim_{h \to 0} \frac{(a+h)^2 - a^2}{h} \\
+    & = \lim_{h \to 0} \frac{a^2 + 2ah + h^2 - a^2}{h} \\
+    & = \lim_{h \to 0} 2a + h = 2a. \\
+\end{align*}
+\end{verbatim}
+
+\linedivm
+
+If $f(x) = x^2$, then
+\begin{align*}
+    f'(a) & = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} \\
+    & = \lim_{h \to 0} \frac{(a+h)^2 - a^2}{h} \\
+    & = \lim_{h \to 0} \frac{a^2 + 2ah + h^2 - a^2}{h} \\
+    & = \lim_{h \to 0} 2a + h = 2a. \\
+\end{align*}
+
+\linediv
+
+\end{document}
