@@ -19,14 +19,15 @@
     <student>
         <name>
             <!-- Insert your full name on the line below. -->
-            
+            Geoffrey Yoerger
         </name>
         <netid>
             <!-- Insert your NetID (NOT your student ID number!) below. -->
-
+            giyoerger@wisc.edu
         </netid>
         <studentid>
             <!-- Insert your student ID number below. -->
+            9076643189
         </studentid>
     </student>
 
