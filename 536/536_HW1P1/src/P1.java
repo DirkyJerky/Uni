@@ -28,6 +28,11 @@ public class P1 {
 		SymTable table = new SymTable();
 		try {
 			table.removeScope();
+		} catch (EmptySymTableException e) {
+			return "testScopes: start table remove should not have errored";
+		}
+		try {
+			table.removeScope();
 			return "testScopes: empty table remove should have errored";
 		} catch (EmptySymTableException e) {}
 		
@@ -67,6 +72,7 @@ public class P1 {
 				"Sym Table\n" + 
 				"{b=b}\n" + 
 				"{a=a}\n" +
+				"{}\n" +
 				"\n";
 		
 		if (! expected.contentEquals(table.toString())) {

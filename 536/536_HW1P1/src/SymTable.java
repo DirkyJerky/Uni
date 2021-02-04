@@ -7,6 +7,7 @@ public class SymTable {
 	
 	public SymTable() {
 		this.syms = new ArrayList<>();
+		this.addScope();
 	}
 	
 	public void addDecl(String name, Sym sym) throws DuplicateSymException, EmptySymTableException {
