@@ -35,30 +35,22 @@
     <!-- BEGIN PROBLEM 1 -->
     <answer number="1a">
         <!-- Paste your solution to problem 1, part (a) below this line. --><![CDATA[
-
-
-
+        SELECT j AS "i", i AS "j", val FROM A ORDER BY i, j;
         ]]><!-- End problem 1, part (a). -->
     </answer>
     <answer number="1b">
         <!-- Paste your solution to problem 1, part (b) below this line. --><![CDATA[
-
-
-
+        SELECT SUM(A.val * B.val) AS Result FROM A JOIN B ON A.i = B.i WHERE A.j = 2 AND B.j = 1;
         ]]><!-- End problem 1, part (b). -->
     </answer>
     <answer number="1c">
         <!-- Paste your solution to problem 1, part (c) below this line. --><![CDATA[
-
-
-
+        SELECT A.i AS i, B.j AS j, SUM(A.val * B.val) AS val FROM A JOIN B ON B.i = A.j GROUP BY A.i, B.j;
         ]]><!-- End problem 1, part (c). -->
     </answer>
     <answer number="1d">
         <!-- Paste your solution to problem 1, part (d) below this line. --><![CDATA[
-
-
-
+        SELECT A.i AS i, B.j AS j, SUM(A.val * B.val) AS val FROM ((SELECT B1.i AS i, B.j AS j, SUM(B1.val * B.val) AS val FROM (B AS B1) JOIN B ON B.i = B1.j GROUP BY B1.i, B.j) AS A) JOIN B ON B.i = A.j GROUP BY A.i, B.j;
         ]]><!-- End problem 1, part (d). -->
     </answer>
     <!-- END PROBLEM 1 -->
@@ -67,30 +59,42 @@
     <!-- BEGIN PROBLEM 2 -->
     <answer number="2a">
         <!-- Paste your solution to problem 2, part (a) below this line. --><![CDATA[
-
-
-
+        WITH TotalSales AS (SELECT S.store, SUM(S.weeklysales) AS AllSales FROM (sales S JOIN holidays H ON (S.weekdate = H.weekdate AND H.isholiday = 'TRUE')) GROUP BY S.store ORDER BY AllSales ASC), TotalSalesMost AS (SELECT * FROM TotalSales ORDER BY AllSales DESC LIMIT 1), TotalSalesLeast AS (SELECT * FROM TotalSales ORDER BY AllSales ASC LIMIT 1) SELECT * FROM TotalSalesMost UNION ALL SELECT * FROM TotalSalesLeast;
         ]]><!-- End problem 2, part (a). -->
     </answer>
     <answer number="2b">
         <!-- Paste your solution to problem 2, part (b) below this line. --><![CDATA[
-
-
-
+        WITH SalesByWeek AS (Select S.weekdate as weekdate, H.isholiday AS isholiday, SUM(S.weeklysales) as TotalSales FROM (sales S JOIN holidays H on S.weekdate = H.weekdate) GROUP BY S.weekdate), AvgHolidaySales AS (SELECT AVG(S.TotalSales) AS avg FROM SalesByWeek S WHERE S.isholiday = 'TRUE') SELECT COUNT(*) As NumNonHolidays FROM (SalesByWeek S JOIN AvgHolidaySales H ON (S.isholiday = 'FALSE' AND S.TotalSales > H.avg));
         ]]><!-- End problem 2, part (b). -->
     </answer>
     <answer number="2c">
         <!-- Paste your solution to problem 2, part (c) below this line. --><![CDATA[
-
-
-
+        SELECT ST.type AS type, SUM(SA.weeklysales) AS TotalSales FROM (sales SA JOIN stores ST ON (SA.store = ST.store AND strftime('%m', SA.weekdate) IN ('06', '07', '08'))) GROUP BY ST.type;
         ]]><!-- End problem 2, part (c). -->
     </answer>
     <answer number="2d">
         <!-- Paste your solution to problem 2, part (d) below this line. --><![CDATA[
-
-
-
+        DROP VIEW IF EXISTS SalesPerStoreWeek;
+        DROP VIEW IF EXISTS TemporalSales;
+        DROP VIEW IF EXISTS AvgData;
+        DROP VIEW IF EXISTS CorrTemp;
+        DROP VIEW IF EXISTS CorrFuel;
+        DROP VIEW IF EXISTS CorrCPI;
+        DROP VIEW IF EXISTS CorrUnemp;
+        DROP TABLE IF EXISTS CorrData;
+        CREATE VIEW SalesPerStoreWeek AS SELECT S.store as store, S.weekdate as weekdate, SUM(S.weeklysales) AS weeklysales FROM sales S GROUP BY S.store, S.weekdate;
+        CREATE VIEW TemporalSales AS SELECT S.store as store, S.weekdate as weekdate, S.weeklysales as weeklysales, T.temperature as temperature, T.fuelprice as fuelprice, T.cpi as cpi, T.unemploymentrate as unemploymentrate FROM (SalesPerStoreWeek S JOIN temporaldata T ON (T.store = S.store AND T.weekdate = S.weekdate));
+        CREATE VIEW AvgData AS SELECT AVG(D.weeklysales) AS weeklysales, AVG(D.temperature) as temperature, AVG(D.fuelprice) as fuelprice, AVG(D.cpi) as cpi, AVG(D.unemploymentrate) as unemploymentrate FROM TemporalSales D;
+        CREATE VIEW CorrTemp AS SELECT 'Temperature', CASE WHEN SUM((D.weeklysales - A.weeklysales) * (D.temperature - A.temperature)) > 0 THEN 1 ELSE -1 END FROM (TemporalSales D JOIN AvgData A);
+        CREATE VIEW CorrFuel AS SELECT 'FuelPrice', CASE WHEN SUM((D.weeklysales - A.weeklysales) * (D.fuelprice - A.fuelprice)) > 0 THEN 1 ELSE -1 END FROM (TemporalSales D JOIN AvgData A);
+        CREATE VIEW CorrCPI AS SELECT 'CPI', CASE WHEN SUM((D.weeklysales - A.weeklysales) * (D.cpi - A.cpi)) > 0 THEN 1 ELSE -1 END FROM (TemporalSales D JOIN AvgData A);
+        CREATE VIEW CorrUnemp AS SELECT 'UnemploymentRate', CASE WHEN SUM((D.weeklysales - A.weeklysales) * (D.unemploymentrate - A.unemploymentrate)) > 0 THEN 1 ELSE -1 END FROM (TemporalSales D JOIN AvgData A);
+        CREATE TABLE CorrData (Attribute_Name VARCHAR(20), Correlation_Sign Integer);
+        INSERT INTO CorrData SELECT * FROM CorrTemp;
+        INSERT INTO CorrData SELECT * FROM CorrFuel;
+        INSERT INTO CorrData SELECT * FROM CorrCPI;
+        INSERT INTO CorrData SELECT * FROM CorrUnemp;
+        SELECT * FROM CorrData;
         ]]><!-- End problem 2, part (d). -->
     </answer>
     <!-- END PROBLEM 2 -->
@@ -99,30 +103,30 @@
     <!-- BEGIN PROBLEM 3 -->
     <answer number="3a">
         <!-- Paste your solution to problem 3, part (a) below this line. --><![CDATA[
-
-
-
+        SELECT S.B AS company, MIN(S.D) as distance FROM (SELECT S.A, S.B, S.d FROM streets S WHERE S.A = 'UW-Madison' UNION SELECT S1.a, S2.b, (S1.d + S2.d) as d FROM streets S1, streets S2 WHERE (S1.A = 'UW-Madison' AND S1.B = S2.A) UNION SELECT S1.a, S3.b, (S1.d + S2.d + S3.d) as d FROM streets S1, streets S2, streets S3 WHERE (S1.A = 'UW-Madison' AND S1.B = S2.A AND S2.B = S3.A)) S WHERE (S.d <= 10) GROUP BY S.B;
         ]]><!-- End problem 3, part (a). -->
     </answer>
     <answer number="3b">
         <!-- Paste your solution to problem 3, part (b) below this line. --><![CDATA[
-
-
-
+        DROP VIEW IF EXISTS StreetsByMad;
+        CREATE VIEW StreetsByMad AS SELECT * FROM (SELECT S.B, S.d FROM streets S WHERE S.A = 'UW-Madison' UNION SELECT S2.b, (S1.d + S2.d) as d FROM streets S1, streets S2 WHERE (S1.A = 'UW-Madison' AND S1.B = S2.A) UNION SELECT S3.b, (S1.d + S2.d + S3.d) as d FROM streets S1, streets S2, streets S3 WHERE (S1.A = 'UW-Madison' AND S1.B = S2.A AND S2.B = S3.A)) S;
+        SELECT M1.B AS company1, M2.B AS company2, (M1.d + M2.d) AS distance FROM (StreetsByMad M1 JOIN StreetsByMad M2 ON (M1.B <> M2.B AND (M1.d + M2.d) <= 15));
         ]]><!-- End problem 3, part (b). -->
     </answer>
     <answer number="3c">
         <!-- Paste your solution to problem 3, part (c) below this line. --><![CDATA[
-
-
-
+        DELETE FROM streets WHERE id IN (SELECT S1.id FROM (streets S1 JOIN streets S2 JOIN streets S3 ON (S1.id <> S2.id AND S2.id <> S3.id AND S1.id <> S3.id AND S1.B = S2.A AND S2.B = S3.A AND S3.B = S1.A)) LIMIT 1);
         ]]><!-- End problem 3, part (c). -->
     </answer>
     <answer number="3d">
         <!-- Paste your solution to problem 3, part (d) below this line. --><![CDATA[
-
-
-
+        WITH RECURSIVE ss(headID, a, b, d) AS (
+            SELECT S.id as headID, a, b, d FROM streets S
+        UNION
+            SELECT S.id as headID, ss.a, S.b, (ss.d + S.d) as d
+            FROM ss, streets S
+            WHERE (ss.b = S.a AND S.id <> ss.headID)
+        ) SELECT ss.a AS A, ss.b AS B, ss.d AS distance FROM ss ORDER BY ss.d DESC LIMIT 1;
         ]]><!-- End problem 3, part (d). -->
     </answer>
     <!-- END PROBLEM 3 -->
