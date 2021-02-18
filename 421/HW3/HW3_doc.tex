@@ -1,0 +1,173 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage{datetime}
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{16}{2}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+
+\noindent\fbox{\textbf{Exercise \#1:}} Prove the following theorem by induction.  
+
+
+
+\begin{theorem*} If $n$ is a natural number, then $1^2+2^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$.
+
+\end{theorem*}
+
+\begin{proof} We argue by induction. 
+
+    Let $P(n) = \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$
+
+    \underline{Base case:} $P(1) = $
+    \begin{align*}
+        P(1) = & & \sum_{i=1}^{1} n^2 &= \frac{1(1+1)(2(1)+1)}{6} \\
+        = & & 1^2 &= \frac{1*2*3}{6} \\
+        = & & 1 &= \frac{6}{6} \\
+        = & & 1 &= 1 \\
+        = & & TRUE & \\
+    \end{align*}
+
+    \underline{Induction step:} 
+    Let $n \in \mathbb{N}$.  Suppose $P(n)$ is true.
+    \begin{align*}
+        P(n+1) &= \sum_{i=1}^{n+1} i^2 &= \frac{(n+1)((n+1)+1)(2(n+1)+1)}{6}
+               &= \sum_{i=1}^{n} i^2 + (n+1)^2 = \frac{(n+1)(n+2)(2n+3)}{6}
+               &=  i^2 + (n+1)^2 = \frac{(n+1)(n+2)(2n+3)}{6}
+    \end{align*}
+
+    \underline{Induction step:} 
+
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#2:}} Prove the following theorem by induction.  
+
+\begin{theorem*}[Bernoulli's inequality] Suppose $n$ is a natural number and $x$ is a real number. If $x > -1$, then 
+$$
+(1+x)^n \geq 1 + nx.
+$$
+\end{theorem*} 
+
+\begin{proof} We argue by induction. 
+
+\underline{Base case:}
+
+\underline{Induction step:} 
+
+\end{proof} 
+ 
+
+
+
+\noindent \fbox{\textbf{Exercise \#3:}} For this problem we need the following definition: 
+
+\begin{definition*}
+An integer $n$ is \emph{divisible} by an integer $k$ if the ratio $n/k$ is an integer. 
+\end{definition*}
+
+For example: -3, 0, 3, 6 are all divisible by 3 while 1, 2, 4, 5 are not divisible by 3.  Prove the following: 
+
+
+\begin{theorem*} Suppose $n$ is an integer. If $n^2$ is divisible by $3$, then $n$ is divisible by $3$. 
+
+\end{theorem*}
+
+ \begin{proof} (Hint: if $n$ is not divisible by $3$, then $n=3k+1$ or $n=3k+2$ for some integer $k$.) \end{proof} 
+ 
+ \noindent \fbox{\textbf{Exercise \#4:}} Prove that $\sqrt{3}$ is irrational.  
+
+ \begin{proof} \end{proof} 
+
+\noindent \fbox{\textbf{Exercise \#5:}} Prove that $\sqrt{2} + \sqrt{3}$ and $\sqrt{2}-\sqrt{3}$ are both irrational.  
+
+ \begin{proof} (Hint: $(a+b)(a-b) = a^2-b^2$) \end{proof} 
+ 
+  \noindent \fbox{\textbf{Exercise \#6:}} Spivak, Chapter 3, Problem 14. 
+  
+  \begin{proof}[Solution] (justify your answer)
+  
+  \end{proof} 
+
+ 
+ 
+  \noindent \fbox{\textbf{Exercise \#7:}} Spivak, Chapter 3, Problem 23. 
+
+
+  \begin{proof}[Proof of (a)]  \end{proof} 
+  
+    \begin{proof}[Proof of (b)]  \end{proof} 
+    
+     \noindent \fbox{\textbf{Exercise \#8:}} Spivak, Chapter 3, Problem 26. 
+ 
+ 
+     \begin{proof} \end{proof} 
+    
+\section{Extra Credit Questions} 
+
+Each extra credit question is worth 1 extra point. \\
+
+\noindent\fbox{\textbf{Exercise E.C.\#1:}} Spivak, Chapter 2, Problem 17
+
+\smallskip
+
+\noindent\fbox{\textbf{Exercise E.C.\#2:}} Spivak, Chapter 3, Problem 16
+
+\smallskip
+
+
+\noindent\fbox{\textbf{Exercise E.C.\#3:}} Spivak, Chapter 3, Problem 17
+
+\smallskip
+
+
+\noindent\fbox{\textbf{Exercise E.C.\#4:}} Spivak, Chapter 3, Problem 20 (b)
+
+
+
+
+    
+    
+\end{document}
