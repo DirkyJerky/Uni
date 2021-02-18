@@ -1,0 +1,347 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage{centernot}
+
+\usepackage{datetime}
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{case}{Case}
+
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Rp}{\mathbb{R}_{> 0}}
+
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#2}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{09}{2}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+
+%Note: \noindent removes the indentation from that line. \fbox{} puts everything in a box. \textbf{} bolds the text. 
+
+\noindent\fbox{\textbf{Exercise \#1:}} Prove the following theorem by cases. 
+
+%Note: the theorem environment is used to create theorems. 
+
+
+\begin{theorem*} If $x$ is an integer, then $x^2 + 3x-9$ is odd. 
+
+\end{theorem*}
+
+%Note: the proof environment automatically writes ``Proof.'' at the start and adds a square at the end. 
+
+\begin{proof}
+    Suppose $x$ is an integer.
+
+    Consider the two parities of $x$.
+    
+    \begin{case} $x$ is odd, by definition $x = 2n + 1$ for some integer n
+        \begin{align*}
+            x^2 + 3x - 9 & = (2n+1)^2 + 3(2n+1) - 9 \\
+            & = 4n^2 + 4n + 1 + 6n + 3 - 9 \\
+            & = 4n^2 + 10n - 5 \\
+            & = 2*2n^2 + 2*5n + 2*(-3) + 1 \\
+            & = 2(2n^2 + 5n - 3) + 1 \\
+        \end{align*}
+    is odd because $2n^2 + 5n -3$ is an integer.
+
+    \end{case}
+
+    \begin{case} $x$ is even, by definition $x = 2m$ for some integer m
+
+        \begin{align*}
+            x^2 + 3x - 9 & = (2m)^2 + 3(2m) - 9 \\
+            & = 4m^2 + 6m - 9 \\
+            & = 2*2m^2 + 2*3m + 2*(-5) + 1 \\
+            & = 2(2m^2 + 3m - 5) + 1 \\
+        \end{align*}
+    is odd because $2m^2 + 3m - 5$ is an integer.
+
+    \end{case}
+
+
+\end{proof} 
+
+\noindent \fbox{\textbf{Exercise \#2:}} Prove the following theorem in two ways: by contrapositive and by contradiction. 
+
+
+\begin{theorem*} Suppose $x$ is an integer. If $x^2$ is even, then $x$ is even. 
+
+\end{theorem*}
+
+%Adding [Proof by contrapositive] after \begin{proof} turns: ``Proof.'' (see the first problem) into ``Proof by contradiction.''
+
+
+\begin{proof}[Proof by contrapositive]
+    Suppose $x$ is an integer.
+
+    Suppose $x$ is odd, by definition $x = 2n + 1$ for some integer $n$
+
+    \begin{align*}
+        x^2 & = (2n+1)^2 \\
+        & = 4n^2 + 4n + 1 \\
+        & = 2*2n^2 + 2*2n + 1 \\
+        & = 2(2n^2 + 2n) + 1 \\
+    \end{align*}
+    is odd because $2n^2 + 2n$ is an integer.  
+    Hence, $x \text{ is odd} \implies x^2 \text{ is odd}$.
+    Likewise, the contrapositive, $x^2 \text{ is even} \implies x \text{ is even}$.
+
+\end{proof} 
+
+\begin{proof}[Proof by contradiction]
+    Suppose $x$ is an integer.
+
+    Suppose $x^2 \text{ is even} \centernot\implies x \text{ is even}$. 
+    Equivicantly, $x^2 \text{ is even} \implies x \text{ is odd}$. 
+
+    Suppose $x^2$ is even. By definition, $x^2 = 2n$ for some integer n, and $x = 2m+1$ for some integer m. Then
+    
+    \begin{align*}
+        x^2 & = 2n = (2m+1)^2 \\
+        & = 2n = 4m^2 + 4m + 1 \\
+        & = 2n = 2*2m^2 + 2*2m + 1 \\
+        & = 2n = 2(2m^2 + 2m) + 1 \\
+    \end{align*}
+    Which is impossible because $n$ and $2m^2 + 2m$ are both integers.
+    Hence $x^2 \text{ is even} \implies x \text{ is odd}$ is a contradiction, and $x^2 \text{ is even} \implies x \text{ is even}$ is true.
+
+\end{proof} 
+    
+\noindent\fbox{\textbf{Exercise \#3:}} Prove the following theorem. 
+
+\begin{theorem*}
+If the name of a month has 5 or more characters, then a 4-letter word can be formed using those characters.
+\end{theorem*}
+
+\begin{proof}
+    Consider the months with more than 5 characters. (Cases compacted for space)
+
+    \begin{align*}
+        JANUARY & \to JURY \\
+        FEBRUARY & \to FEAR \\
+        AUGUST & \to STAG \\
+        SEPTEMBER & \to STEM \\
+        OCTOBER & \to ROOT \\
+        NOVEMBER & \to NORM \\
+        DECEMBER & \to DEER \\
+    \end{align*}
+
+    Hence, every month with more than 5 characters has a corrisponding 4-letter word formable from its characters.
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#4:}} Prove the following theorem. 
+
+\begin{theorem*}
+For all numbers $x$ and $y$,  $(x+y)^2=x^2+y^2$ if and only if $x=0$ or $y=0$. 
+\end{theorem*}
+
+% \Rightarrow and \Leftarrow are commands to make double lined arrows in math mode. For double arrows one can use \Leftrightarrow 
+
+
+\begin{proof} Suppose $x$ and $y$ are numbers
+    $(\Rightarrow)$: Suppose $(x+y)^2=x^2+y^2$.
+    \begin{align*}
+        & (x+y)^2 = x^2 + xy + y^2 \\
+        & x^2 + xy + y^2 = x^2 + y^2 \Rightarrow xy = 0 \\
+        & xy = 0 \Rightarrow (x = 0 \lor y = 0) \\
+        & \text{Therefore, } (x+y)^2 = x^2 + y^2 \Rightarrow (x = 0 \lor y = 0) \\
+    \end{align*} 
+
+    $(\Leftarrow)$: Suppose $x=0$ or $y=0$.
+
+    \setcounter{case}{0}
+    \begin{case} x = 0
+        \begin{align*}
+            (x+y)^2 & = (0+y)^2 \\
+            & = y^2 \\
+            & = 0^2 + y^2 \\
+            & = x^2 + y^2 \\
+        \end{align*}
+    \end{case}
+    \begin{case} y = 0
+        \begin{align*}
+            (x+y)^2 & = (x+0)^2 \\
+            & = x^2 \\
+            & = x^2 + 0^2 \\
+            & = x^2 + y^2 \\
+        \end{align*}
+    \end{case}
+
+    Hence, $(x+y)^2 = x^2 + y^2 \Leftrightarrow (x = 0 \lor y = 0)$
+
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#5:}} Using only properties P1-P12 and noting every time you use one, prove the following theorem. 
+
+\begin{theorem*}
+Suppose $a$ and $b$ are numbers. If $ab=1$, then $b = a^{-1}$. 
+\end{theorem*}
+
+
+\begin{proof} Suppose $a$ and $b$ are numbers. Suppose $ab=1$.
+
+    Notice that, because of the theorem proved in week 2, $a=0 \lor b=0 \iff ab=0$.  Equivicantly, $a \neq 0 \land b \neq 0 \iff ab \neq 0$. Because $ab=1 \neq 0$, $a \neq 0$ and $b \neq 0$. This enables the use of P7 below.
+
+    \begin{align*}
+        & & ab &= 1 \\
+        & & a^{-1} * a * b &= a^{-1} * 1 \\
+        \text{By P5... } & & (a^{-1} * a) * b &= a^{-1} * 1 \\
+        \text{By P7... } & & (1) * b &= a^{-1} * 1 \\
+        \text{By P6... } & & b &= a^{-1} \\
+    \end{align*}
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#6:}} Using only properties P1-P12 and noting every time you use one, prove the following theorem. 
+
+\begin{theorem*}
+Suppose $a$ and $b$ are numbers. If $a \neq 0$ and $b \neq 0$, then $(a b)^{-1} = a^{-1} b^{-1}$. 
+\end{theorem*}
+
+
+\begin{proof} Suppose $a$ and $b$ are numbers. Suppose $a \neq 0$ and $b \neq 0$
+
+    Notice that, because of the theorem proved in week 2, $a=0 \lor b=0 \iff ab=0$.  Equivicantly, $a \neq 0 \land b \neq 0 \iff ab \neq 0$. Because $a \neq 0$ and $b \neq 0$, $ab \neq 0$. This enables the use of P7 below.
+
+    \begin{align*}
+        \text{By P7... } & & (ab)^{-1} * (ab) &= 1 \\
+        & & (ab)^{-1} * (ab) * a^{-1} &= 1 * a^{-1} \\
+        & & (ab)^{-1} * (ab) * a^{-1} * b^{-1} &= 1 * a^{-1} * b^{-1} \\
+        \text{By many P5s... } & & (ab)^{-1} * (a * a^{-1}) * (b * b^{-1}) &= 1 * (a^{-1} * b^{-1}) \\
+        \text{By P7... } & & (ab)^{-1} * (1) * (1) &= 1 * (a^{-1} * b^{-1}) \\
+        \text{By P6... } & & (ab)^{-1} &= a^{-1} * b^{-1} \\
+    \end{align*}
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#7:}} Using only properties P1-P12 and noting every time you use one, prove the following theorem. 
+
+\begin{theorem*}
+Suppose $a$, $b$, and $c$ are numbers. If $a<b$ and $0 < c$, then $ac < bc$. 
+\end{theorem*}
+
+
+\begin{proof}  Suppose $a$, $b$, and $c$ are numbers. Suppose $a<b$ and $0 < c$. 
+
+    Notice that by definition of inequalities, $a<b \iff b-a \in \Rp$, and $0<c \iff c-0 \in \Rp$.
+
+    \begin{align*}
+        \text{By definition of subtraction... } & c-0 \in \Rp \implies c + (-0) \in Rp \implies c + (0) \in \Rp \\
+        \text{By P2... } & c + 0 \in \Rp \implies c \in \Rp \\
+        \text{By P12... } & c * (b-a) \in \Rp \\
+        \text{By P9... } & (c * b - c * a) \in \Rp \\
+        \text{By P8... } & (b * c - a * c) \in \Rp \\
+        \text{By definition of inequalities... } & ac < bc \\
+    \end{align*}
+\end{proof} 
+
+%In this problem statement we are using the absolute value command. 
+
+\noindent\fbox{\textbf{Exercise \#8:}} Prove the following: if $x$ and $y$ are numbers, then 
+\begin{enumerate}
+\item $\abs{xy} = \abs{x}\abs{y}$, 
+\item $\abs{x-y} \leq \abs{x}+\abs{y}$, 
+\item $\abs{x}-\abs{y} \leq \abs{x-y}$. 
+\end{enumerate}
+Hint: you can give a short proof of (2) and (3) by reducing to the triangle inequality. You do not have to reference properties P1-P12.
+
+\begin{proof}[Proof of (1)] 
+    \setcounter{case}{0}
+
+    Consider signs of $x$ and $y$
+
+    \begin{case} $x \geq 0, y \geq 0$, hence $xy \geq 0$
+        \begin{align*}
+            |xy| & = xy \\
+            & = |x| |y| \\
+        \end{align*}
+    \end{case} 
+
+    \begin{case} $x \geq 0, y < 0$, hence $xy \leq 0$
+        \begin{align*}
+            |xy| & = -(x * y) \\
+            & = x * -y \\
+            & = |x| |y| \\
+        \end{align*}
+    \end{case} 
+
+    \begin{case} $x < 0, y \geq 0$, hence $xy \leq 0$
+        \begin{align*}
+            |xy| & = -(x * y) \\
+            & = -x * y \\
+            & = |x| |y| \\
+        \end{align*}
+    \end{case} 
+
+    \begin{case} $x < 0, y < 0$, hence $xy > 0$
+        \begin{align*}
+            |xy| & = x * y \\
+            & = -1 * -1 * x * y \\
+            & = -1 * x * -1 * y \\
+            & = -x * -y \\
+            & = |x| |y| \\
+        \end{align*}
+    \end{case} 
+\end{proof}
+
+\begin{proof}[Proof of (2)]
+    Let $z = -y$, then $z$ is a number.  Then
+    \begin{align*}
+        |x - y| \leq |x| + |y| & \iff |x + z| \leq |x| + |-z| \\
+        & \iff |x + z| \leq |x| + |z| \\
+    \end{align*}
+    Hence $|x - y| \leq |x| + |y|$ is logically equivalent to the proven triangle inequality,
+\end{proof}
+
+\begin{proof}[Proof of (3)]
+    Suppose $|x + y| \leq |x| + |y|$
+
+    Let $z = y + x$, then $y = z - x$
+    \begin{align*}
+        |x + y| \leq |x| + |y| & \iff |z| \leq |x| + |z-x| \\
+        & \iff |z| - |x| \leq |x| + |z-x| - |x| \\
+        & \iff |z| - |x| \leq |z-x| \\
+    \end{align*}
+
+\end{proof}
+
+
+
+    
+    
+\end{document}
