@@ -1,0 +1,11 @@
+"unterminated
+ "also unterminated \"
+  "backslash followed by space: \ is not allowed"
+   "bad escaped character: \a AND not terminated
+
+"""
+"" "
+
+1111111111111111111111111111111111111111111111111111
+
+"\a eof after this

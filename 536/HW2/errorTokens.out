@@ -1,0 +1,13 @@
+BEGIN PARSING ERRORS
+1:1 ***WARNING*** unterminated string literal ignored
+2:2 ***WARNING*** unterminated string literal ignored
+3:3 ***WARNING*** string literal with bad escaped character ignored
+4:4 ***WARNING*** unterminated string literal with bad escaped character ignored
+""
+6:3 ***WARNING*** unterminated string literal ignored
+""
+7:4 ***WARNING*** unterminated string literal ignored
+9:1 ***WARNING*** integer literal too large; using max value
+2147483647
+11:1 ***WARNING*** unterminated string literal with bad escaped character ignored
+END PARSING ERRORS
