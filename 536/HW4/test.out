@@ -1,0 +1,180 @@
+struct Point{
+    int x;
+    int y;
+};
+
+int f(int x, bool b) {
+}
+
+void g() {
+    int a;
+    bool b;
+    struct Point p;
+    (p(Point)).x(int) = a(int);
+    b(bool) = (a(int) == 3);
+    f(int,bool->int)((a(int) + ((p(Point)).y(int) * 2)), b(bool));
+    g(->void)();
+}
+
+int x;
+bool y;
+int fn1() {
+}
+
+bool fn2(int x, bool y) {
+}
+
+struct stru{
+    int x;
+    bool y;
+};
+
+void allStmts() {
+    int x;
+    bool y;
+    int a;
+    int b;
+    int c;
+    int d;
+    int e;
+    bool f;
+    bool g;
+    bool h;
+    bool i;
+    bool j;
+    bool k;
+    bool l;
+    bool m;
+    bool n;
+    bool o;
+    bool p;
+    bool q;
+    int r;
+    int s;
+    int t;
+    bool u;
+    if ((x(int) == (-1))) {
+        x(int) = ((4 + (3 * 5)) - y(bool));
+        while (y(bool)) {
+            y(bool) = ((y(bool) * 2) + x(int));
+        }
+    }
+    else {
+        x(int) = 0;
+    }
+    a(int) = 1;
+    b(int)++;
+    c(int)--;
+    cin >> d(int);
+    cout << e(int);
+    if (f(bool)) {
+    }
+    if (g(bool)) {
+        int g;
+    }
+    if (h(bool)) {
+        return h(bool);
+    }
+    if (i(bool)) {
+        bool i;
+        return i(bool);
+    }
+    if (j(bool)) {
+    }
+    else {
+    }
+    if (k(bool)) {
+        bool k;
+    }
+    else {
+        return k(bool);
+    }
+    if (l(bool)) {
+        return l(bool);
+    }
+    else {
+        bool l;
+    }
+    if (m(bool)) {
+        int m;
+        return m(int);
+    }
+    else {
+        int m;
+        return m(int);
+    }
+    while (n(bool)) {
+    }
+    while (o(bool)) {
+        bool o;
+    }
+    while (p(bool)) {
+        return p(bool);
+    }
+    while (q(bool)) {
+        int q;
+        return q(int);
+    }
+    repeat (r(int)) {
+    }
+    repeat (s(int)) {
+        bool s;
+    }
+    repeat (t(int)) {
+        return t(int);
+    }
+    return u(bool);
+    return;
+    fn1(->int)();
+    fn2(int,bool->bool)(a(int), 1, "s", (1 + 2));
+}
+
+void allExps() {
+    int a;
+    int b;
+    int c;
+    int d;
+    int e;
+    bool f;
+    bool g;
+    bool h;
+    int i;
+    int j;
+    int k;
+    int l;
+    int m;
+    int n;
+    int o;
+    struct stru p;
+    struct stru q;
+    bool s;
+    return (a(int) = 1);
+    return (b(int) + b(int));
+    return (c(int) - c(int));
+    return (d(int) * d(int));
+    return (e(int) / e(int));
+    return (!f(bool));
+    return (g(bool) && g(bool));
+    return (h(bool) || h(bool));
+    return (i(int) == i(int));
+    return (j(int) != j(int));
+    return (k(int) < k(int));
+    return (l(int) > l(int));
+    return (m(int) <= m(int));
+    return (n(int) >= n(int));
+    return (-o(int));
+    return p(stru);
+    return (q(stru)).x(int);
+    return (q(stru)).y(bool);
+    return 0;
+    return 100000;
+    return "";
+    return "\n\\\"";
+    return "Hello World!";
+    return true;
+    return false;
+    return (1 + a(int));
+    return r();
+    return fn2(int,bool->bool)(s(bool), s(bool), s(bool), 1, "str", ((((1 + 2) + 3) + 4) + 5), true);
+}
+

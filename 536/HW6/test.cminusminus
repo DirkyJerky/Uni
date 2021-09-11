@@ -1,0 +1,33 @@
+bool fn1(int x) {
+    return x != 3;
+}
+
+void main() {
+    int x;
+    int y;
+    cin >> x;
+    cout << x;
+    cout << "a" == "abc";
+    cout << "a" == "A";
+    cout << "a" == "a";
+    cout << "abc" == "abc";
+    cout << "" == "abc";
+    cout << "" == "";
+
+    
+    if (fn1(x)) {
+        cout << "Neq 3";
+    } else {
+        cout << "Eq 3";
+    }
+
+    cout << "\n";
+
+    y = x;
+    while (y != 0) {
+        cout << y;
+        cout << "\n";
+        y--;
+    }
+}
+

@@ -1,0 +1,359 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage{datetime}
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+\newtheorem{case}{Case}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{10}{3}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+\noindent\fbox{\textbf{Exercise \#1:}} Assuming that the function $f(x) = e^x$ is continuous, prove that the equation $e^x = 4-x^7$ has a solution. 
+
+\begin{proof} Let $g(x) = e^x + x^7 - 4$. It follows from the theorems proven in class/homework, and the given assumption, that $g(x)$ is continuous.
+
+    Let $a = 0$. Then $g(a) = -3 < 0$.
+
+    Let $b = 2$. Then $g(b) = e^2 + 128 - 4 \approx 131.389 > 0$.
+
+    Because $g(a) < 0 < g(b)$, by Theorem 7.1, $\exists x \; \colon g(x) = e^x + x^7 - 4 = 0$, equivicantly, $\exists x \: \colon e^x = 4 - x^7$.
+\end{proof} 
+
+
+\noindent\fbox{\textbf{Exercise \#2:}} Spivak, Chapter 7, Problem \# 14 (b)
+
+If $f$ is a continuous function on $[0,1]$, let $||f||$ be the maximum value of $|f|$ on $[0,1]$.
+
+\begin{theorem*} $||f + g|| \leq ||f|| + ||g||$
+\end{theorem*}
+
+\begin{proof} Let $h(x) = f(x) + g(x)$.  It follows that $h(x)$ is continuous. By Theorem 7.3, 
+    \begin{align*}
+        & \exists y_f \in [0,1] \; \forall x \in [0,1] \; \colon |f(x)| \leq |f(y_f)| \\
+        & \exists y_g \in [0,1] \; \forall x \in [0,1] \; \colon |g(x)| \leq |g(y_g)| \\
+        & \exists y_h \in [0,1] \; \forall x \in [0,1] \; \colon |h(x)| \leq |h(y_h)| \implies |f(x) + g(x)| \leq |f(y_h) + g(y_h)| \\
+    \end{align*}
+
+    Thus, $||f|| = |f(y_f)|$, $||g|| = |g(y_g)|$, $||f+g|| = |h(y_h)| = |f(y_h) + g(y_h)|$.
+
+    Because $\forall x \in [0,1] \; \colon |f(x)| \leq |f(y_f)|$, and $y_h \in [0,1]$, it follows that $|f(y_h)| \leq |f(y_f)|$.
+
+    Because $\forall x \in [0,1] \; \colon |g(x)| \leq |g(y_g)|$, and $y_h \in [0,1]$, it follows that $|g(y_h)| \leq |g(y_g)|$.
+
+    Then, $||f+g|| = |f(y_h) + g(y_h)| \leq |f(y_h)| + |g(y_g)| \leq |f(y_f)| + |g(y_g)| = ||f|| + ||g||$.
+\end{proof} 
+
+\begin{example*} Example where $||f + g|| \neq ||f|| + ||g||$ \\
+
+    Let $f(x) = x$. Let $g(x) = -x$.  Then $(f+g)(x) = x - x = 0$. \\
+
+    Then $||f+g|| = 0$, $||f|| = 1$, $||g|| = 0$, and $||f|| + ||g|| = 0 + 1 \neq 0 = ||f+g||$. \\
+
+\end{example*}
+
+
+
+\noindent\fbox{\textbf{Exercise \#3:}} Suppose $f$ is continuous on $[a,b]$. If $f(x) \neq 0$ for all $x$ in $[a,b]$, then either $f(x) > 0$ for all $x$ in $[a,b]$ or $f(x) < 0$ for all $x$ in $[a,b]$
+
+\begin{proof} We argue by contrapositive.
+
+    [ Original: $(\forall x \in [a,b] \; \colon f(x) \neq 0) \implies (\forall x \in [a,b] \; \colon f(x) > 0) \lor (\forall x \in [a,b] \; \colon f(x) < 0)$ ]
+
+    [ Contrapositive: $(\exists x_1 \in [a,b] \; \colon f(x_1) \leq 0) \land (\exists x_2 \in [a,b] \; \colon f(x_2) \geq 0) \implies \exists x_3 \in [a,b] \; \colon f(x_3) = 0$ ]
+
+    If $\exists x_1 \in [a,b] \; \colon f(x_1) \leq 0$ and $\exists x_2 \in [a,b] \; \colon f(x_2) \geq 0$, Then proceed by cases
+
+    \begin{case} $f(x_1) = 0$
+
+        Then $\exists x = x_1 \in [a,b] \; \colon f(x) = 0$
+    \end{case}
+    \begin{case} $f(x_2) = 0$
+
+        Then $\exists x = x_2 \in [a,b] \; \colon f(x) = 0$
+    \end{case}
+    \begin{case} $f(x_1) < 0 \land f(x_2) > 0 \implies f(x_1) < 0 < f(x_2)$
+
+        By Theorem 7.1, $\exists x \in [x_1,x_2] \subset [a,b] \; \colon f(x) = 0$
+    \end{case}
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#4:}} Spivak, Chapter 7, Problem \# 20 (a)
+
+Suppose $f$ is continuous on $[0,1]$ and $f(0) = f(1)$.
+
+\begin{theorem*} $\forall n \in \mathbb{N} \; \exists x \; \colon f(x) = f(x + \frac{1}{n})$
+
+\end{theorem*}
+
+\begin{proof} 
+    Fix $n \in \mathbb{N}$. Let $g(x) = f(x) - f(x + \frac{1}{n})$. It follows that $g$ is continuous on $[0, 1 - \frac{1}{n}]$.
+
+    If $\exists x \in [0,1 - \frac{1}{n}] \; \colon g(x) = 0$, then $\exists x \in [0,1 - \frac{1}{n}] \; \colon f(x) = f(x + \frac{1}{n})$.
+    
+    Otherwise, $\forall x \in [0,1 - \frac{1}{n}] \; \colon g(x) \neq 0$. We argue by contradiction.
+
+    By exercise 3, either $\forall x \in [0,1 - \frac{1}{n}] \; \colon g(x) > 0$ or $\forall x \in [0,1 - \frac{1}{n}] \; \colon g(x) < 0$.
+
+    If $\forall x \in [0,1 - \frac{1}{n}] \; \colon g(x) > 0$, then $\forall x \in [0,1 - \frac{1}{n}] \; \colon f(x) > f(x + \frac{1}{n})$. Then, $f(0) > f(\frac{1}{n}) > \cdots > f(\frac{n-1}{n}) > f(\frac{n}{n}) = f(1)$. Thus $f(0) \neq f(1)$, which is a contradiction.
+
+    Likewise, if $\forall x \in [0,1 - \frac{1}{n}] \; \colon g(x) < 0$, then $\forall x \in [0,1 - \frac{1}{n}] \; \colon f(x) < f(x + \frac{1}{n})$. Then, $f(0) < f(\frac{1}{n}) < \cdots < f(\frac{n-1}{n}) < f(\frac{n}{n}) = f(1)$. Thus $f(0) \neq f(1)$, which is a contradiction.
+
+    Thus, $\forall x \in [0,1 - \frac{1}{n}] \; \colon g(x) \neq 0$ leads to a contradiction, and $\exists x \in [0,1 - \frac{1}{n}] \subset \mathbb{R} \; \colon g(x) = 0$.
+    
+    Since $n$ was aribtrary, $\forall n \in \mathbb{N} \; \exists x \; \colon f(x) = f(x + \frac{1}{n})$
+
+\end{proof} 
+
+
+The next three problems involve infinite limits which are defined as follows. 
+
+\begin{definition*} \
+\begin{enumerate}
+\item We write $\lim_{x \rightarrow \infty} f(x) = \infty$ if for every number $M > 0$ there exists $N> 0$ such that: if $x >N$, then $f(x) > M$. 
+\item We write $\lim_{x \rightarrow \infty} f(x) = -\infty$ if for every number $M > 0$ there exists $N> 0$ such that: if $x >N$, then $f(x) < -M$. 
+\item We write $\lim_{x \rightarrow -\infty} f(x) = \infty$ if for every number $M > 0$ there exists $N> 0$ such that: if $x <-N$, then $f(x) > M$. 
+\item  We write $\lim_{x \rightarrow -\infty} f(x) = -\infty$ if for every number $M > 0$ there exists $N> 0$ such that: if $x <-N$, then $f(x) <- M$. 
+\end{enumerate}
+
+\end{definition*}
+
+\begin{remark*} In the definition above, we should think about $M$ as a very large number. 
+\end{remark*}
+
+\noindent\fbox{\textbf{Exercise \#5:}} Suppose $f(x) = x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ is a polynomial. Prove:
+\begin{enumerate}[(a)]
+\item $\lim_{x \rightarrow\infty} f(x) = \infty$.
+\item If $n$ is even, then  $\lim_{x \rightarrow-\infty} f(x) = \infty$. 
+\item If $n$ is odd, then  $\lim_{x \rightarrow-\infty} f(x) = -\infty$.
+\end{enumerate}
+
+\begin{proof}[Proof of (a)] 
+    Fix $M > 0$. Let $N = max\{1, 2M, 2n|a_0|, 2n|a_1|, \cdots, 2n|a_{n-1}| \}$. 
+
+    If $x > N$,
+    \begin{align*}
+        | \frac{a_{n-j}}{x^j} | & = \frac{|a_{n-j}|}{|x|^j} & & \\
+        & < \frac{|a_{n-j}|}{|x|} & & \text{Since $|x| > N > 1$} \\
+        & < \frac{|a_{n-j}|}{2n|a_{n-j}|} & & \text{Since $|x| > N > 2n|a_{n-j}|$} \\
+        & = \frac{1}{2n} & & \\
+    \end{align*}
+
+    Thus,
+    \begin{align*}
+        1 + \frac{a_{n-1}}{x} + \cdots + \frac{a_0}{x^n} & \geq 1 - |\frac{a_{n-1}}{x}| - \cdots - |\frac{a_0}{x^n}| \\
+        & > 1 - \frac{1}{2n} - \cdots - \frac{1}{2n} \\
+        & = 1 - n * \frac{1}{2n} \\
+        & = 1 - \frac{n}{2n} \\
+        & = 1 - \frac{1}{2} \\
+        & = \frac{1}{2} \\
+    \end{align*}
+
+    Since $f(x) = x^n(1 + \frac{a_{n-1}}{x} + \cdots + \frac{a_0}{x^n})$,
+
+    If $x > N$, Then $f(x) > x^n * \frac{1}{2} = \frac{x^n}{2} > \frac{x}{2} > \frac{N}{2} \geq \frac{2M}{2} = M$.
+    
+    Since $M$ was arbitrary, $\forall M > 0 \; \exists N > 0 \; \colon x > N \implies f(x) > M$, equivicantly, $\lim_{x \to \infty} f(x) = \infty$.
+\end{proof} 
+
+\begin{theorem*}[Lemma 1] If $x < -N \leq -1$ and $n$ is even, then $x^n > N$.
+\end{theorem*}
+\begin{theorem*}[Lemma 2] If $x < -N \leq -1$ and $n$ is odd, then $x^n < -N$.
+\end{theorem*}
+
+\begin{proof}[Proof of Lemma 1]
+    Notice $x < -N \implies x^2 > N^2$.
+
+    Since $n = 2m$ is even, $x^n = (x^2)^m > (N^2)^m = N^{2m} > N$, since $N > 1$.
+\end{proof}
+\begin{proof}[Proof of Lemma 2]
+    Using Lemma 1,
+
+    Since $n = 2m + 1$ is odd and $x < 0$, $x^n = n * n^{n-1} = n * n^{2m} < x * N < -N$.
+\end{proof}
+
+\begin{proof}[Proof of (b)] 
+    Fix $M > 0$. Let $N = max\{1, 2M, 2n|a_0|, 2n|a_1|, \cdots, 2n|a_{n-1}| \}$. 
+
+    If $x < -N$,
+    \begin{align*}
+        | \frac{a_{n-j}}{x^j} | & = \frac{|a_{n-j}|}{|x|^j} & & \\
+        & < \frac{|a_{n-j}|}{|x|} & & \text{Since $|x| > N > 1$} \\
+        & < \frac{|a_{n-j}|}{2n|a_{n-j}|} & & \text{Since $|x| > N > 2n|a_{n-j}|$} \\
+        & = \frac{1}{2n} & & \\
+    \end{align*}
+
+    Thus,
+    \begin{align*}
+        1 + \frac{a_{n-1}}{x} + \cdots + \frac{a_0}{x^n} & \geq 1 - |\frac{a_{n-1}}{x}| - \cdots - |\frac{a_0}{x^n}| \\
+        & > 1 - \frac{1}{2n} - \cdots - \frac{1}{2n} \\
+        & = 1 - n * \frac{1}{2n} \\
+        & = 1 - \frac{n}{2n} \\
+        & = 1 - \frac{1}{2} \\
+        & = \frac{1}{2} \\
+    \end{align*}
+
+    Since $f(x) = x^n(1 + \frac{a_{n-1}}{x} + \cdots + \frac{a_0}{x^n})$,
+
+    If $x < -N$, then $f(x) > x^n * \frac{1}{2} > \frac{N}{2} \geq \frac{2M}{2} = M$.
+
+    Since $M$ was arbitrary, $\forall M > 0 \; \exists N > 0 \; \colon x < -N \implies f(x) > M$, equivicantly, $\lim_{x \to -\infty} f(x) = \infty$.
+\end{proof} 
+
+\begin{proof}[Proof of (c)] 
+    Fix $M > 0$. Let $N = max\{1, 2M, 2n|a_0|, 2n|a_1|, \cdots, 2n|a_{n-1}| \}$. 
+
+    If $x < -N$,
+    \begin{align*}
+        | \frac{a_{n-j}}{x^j} | & = \frac{|a_{n-j}|}{|x|^j} & & \\
+        & < \frac{|a_{n-j}|}{|x|} & & \text{Since $|x| > N > 1$} \\
+        & < \frac{|a_{n-j}|}{2n|a_{n-j}|} & & \text{Since $|x| > N > 2n|a_{n-j}|$} \\
+        & = \frac{1}{2n} & & \\
+    \end{align*}
+
+    Thus,
+    \begin{align*}
+        1 + \frac{a_{n-1}}{x} + \cdots + \frac{a_0}{x^n} & \geq 1 - |\frac{a_{n-1}}{x}| - \cdots - |\frac{a_0}{x^n}| \\
+        & > 1 - \frac{1}{2n} - \cdots - \frac{1}{2n} \\
+        & = 1 - n * \frac{1}{2n} \\
+        & = 1 - \frac{n}{2n} \\
+        & = 1 - \frac{1}{2} \\
+        & = \frac{1}{2} \\
+    \end{align*}
+
+    Since $f(x) = x^n(1 + \frac{a_{n-1}}{x} + \cdots + \frac{a_0}{x^n})$,
+
+    If $x < -N$, then $f(x) < x^n * \frac{1}{2} < \frac{-N}{2} \leq \frac{-2M}{2} = -M$
+
+    Since $M$ was arbitrary, $\forall M > 0 \; \exists N > 0 \; \colon x < -N \implies f(x) < -M$, equivicantly, $\lim_{x \to -\infty} f(x) = -\infty$.
+
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#6:}} Suppose $f$ is continuous on $\Rb$. If $\lim_{x \rightarrow\infty} f(x) = \infty$ and $\lim_{x \rightarrow -\infty} f(x)=-\infty$, then there exists a number $x$ such that $f(x)=0$. 
+
+\begin{proof} 
+    If $lim_{x \to \infty} f(x) = \infty$, then $\forall M > 0 \; \exists N > 0 \; \colon x > N \implies f(x) > M$.
+
+    If $lim_{x \to -\infty} f(x) = -\infty$, then $\forall M > 0 \; \exists N > 0 \; \colon x < -N \implies f(x) < -M$.
+
+    Let $M = 1$.  Then $\exists N_1 > 0 \; \colon x_1 > N_1 \implies f(x_1) > 1$, and $\exists N_2 > 0 \; \colon x_2 < -N_2 \implies f(x_2) < -1$.
+
+    Fix $x_1 > N_1 > 0$.  Then $f(x_1) > 1 > 0$.
+
+    Fix $x_2 < -N_2 < 0$.  Then $f(x_2) < -1 < 0$.
+
+    By Theorem 7.1, $\exists x \in [x_2, x_1] \subset \mathbb{R} \; \colon f(x) = 0$.
+
+    Since $x_1$, $x_2$ were arbitrary, $\exists x \in \mathbb{R} \; \colon f(x) = 0$.
+    
+\end{proof} 
+
+
+\noindent\fbox{\textbf{Exercise \#7:}} Suppose $f$ is continuous on $\Rb$. If $\displaystyle \lim_{x \rightarrow\infty} f(x) = \infty = \lim_{x \rightarrow -\infty} f(x)$, then there exists a number $y$ such that $f(y) \leq f(x)$ for all $x$. 
+
+%\displaystyle makes the equation look like it would if we used $$ ... $$  
+
+\begin{proof} 
+    If $lim_{x \to \infty} f(x) = \infty$, then $\forall M > 0 \; \exists N > 0 \; \colon x > N \implies f(x) > M$.
+
+    If $lim_{x \to -\infty} f(x) = \infty$, then $\forall M > 0 \; \exists N > 0 \; \colon x < -N \implies f(x) > M$.
+
+    Fix $M > 0$.  Then $\exists N_1 > 0 \; \colon x_1 > N_1 \implies f(x_1) > M$, and $\exists N_2 > 0 \; \colon x_2 < -N_2 \implies f(x_2) > M$.
+
+    Fix $x_1 > N_1$. $x_2 < -N_2$.  By Theorem 7.4, $\exists y \in [x_2, x_1] \; \forall x \in [x_2, x_1] \; \colon f(y) \leq f(x)$.
+
+    Since $M$, $x_1$, $x_2$ were arbitrary, $\exists y \in \mathbb{R} \; \forall x \in \mathbb{R} \; \: f(y) \leq f(x)$.
+
+\end{proof} 
+
+\section{Extra Credit Questions} 
+
+Each extra credit question is worth 1 extra point. \\
+
+\noindent\fbox{\textbf{Exercise E.C.\#2:}} Spivak, Chapter 7, Problem 17
+
+Suppose $f = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$.
+
+\begin{theorem*} $\exists y \; \forall x \; \colon |f(y)| \leq |f(x)|$
+\end{theorem*}
+
+\begin{proof}
+    Proceed by cases
+    \setcounter{case}{0}
+    \begin{case} $f(x) = a_0$
+
+        Let $y = 0$.
+
+        Then $\forall x \; \colon |f(y)| = |a_0| = |f(x)|$.
+
+        Thus $\forall x \; \colon |f(y)| \leq |f(x)|$.
+    \end{case}
+    \begin{case} $f(x)$ has some factor of the form $a_j x^j$ where $a_j \neq 0$ and $j \in \mathbb{Z} \geq 1$.
+
+        Let $g(x) = |f(x)|$.
+
+        It follows from properties of infinite limits of polynomials that $\lim_{x \to \infty} |f(x)| = lim_{x \to \infty} g(x) = \infty$ and $\lim_{x \to -\infty} |f(x)| = \lim_{x \to -\infty} g(x) = \infty$.
+
+        Applying proof from exercise (7), $\exists y \; \forall x \; \colon g(y) \leq g(x)$, equivicantly, $\exists y \; \forall x \; \colon |f(y)| \leq |f(x)|$
+    \end{case}
+\end{proof}
+
+
+
+
+
+
+    
+
+
+
+
+
+    
+    
+\end{document}

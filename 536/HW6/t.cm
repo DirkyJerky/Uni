@@ -1,0 +1,18 @@
+int fn2() {
+    int x;
+    x = 50;
+    return x * 5;
+}
+
+int fn1() {
+    return 100 + fn2();
+}
+
+void main() {
+    int x;
+    x = fn1();
+    cout << "Hello world!";
+    cout << "\n";
+    cout << x;
+    cout << "\n";
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<pset>
+
+    <!--
+        CS 564, Spring 2021
+        PROBLEM SET 2 SUBMISSION TEMPLATE
+
+        Please copy and paste your SQL queries (and potentially Python and Latex code) 
+        into the appropriate spots below. 
+
+        When submitting SQL queries, please do not include the intitial 
+        %sql or %%sql IPython commands. Just include the SQL code.
+
+        DO NOT DELETE THE <![CDATA[ ... ]]> LINES IN EACH <answer> TAG!
+        Doing so will break the autograder. To avoid accidentally breaking
+        something, please leave all existing comments in this template
+        intact in your submission.
+    -->
+
+    <student>
+        <name>
+            <!-- Insert your full name on the line below. -->
+            Geoffrey Yoerger
+        </name>
+        <netid>
+            <!-- Insert your NetID (NOT your student ID number!) below. -->
+            giyoerger@wisc.edu
+        </netid>
+        <studentid>
+            <!-- Insert your student ID number below. -->
+            9076643189
+        </studentid>
+    </student>
+
+
+    <!-- BEGIN PROBLEM 1 -->
+    <answer number="1a">
+        <!-- Paste your solution to problem 1, part (a) below this line. --><![CDATA[
+        SELECT * FROM (SELECT COUNT(County) as Count, County FROM Hospital GROUP BY County) WHERE Count > 1;
+        ]]><!-- End problem 1, part (a). -->
+    </answer>
+    <answer number="1b">
+        <!-- Paste your solution to problem 1, part (b) below this line. --><![CDATA[
+        SELECT * FROM (SELECT COUNT(zip) as Count, city, state FROM (SELECT DISTINCT zip, city, state FROM Hospital) GROUP BY city, state) WHERE Count > 1;
+        ]]><!-- End problem 1, part (b). -->
+    </answer>
+    <!-- END PROBLEM 1 -->
+
+
+    <!-- BEGIN PROBLEM 2 -->
+    <answer number="2a">
+        <!-- Paste your solution to problem 2, part (a) below this line. --><![CDATA[
+        answer = True
+        explanation = """Because (A -> C), {A,B} -> {A,B,C}.
+        Because (C -> D), {A,B,C} -> {A,B,C,D}.
+        Because (A -> E), {A,B,C,D} -> {A,B,C,D,E}.
+        Because (C -> F), {A,B,C,D,E} -> {A,B,C,D,E,F}.
+        Thus, {A,B} -> {A,B,C,D,E,F}, and {A,B} is a super key."""
+        ]]><!-- End problem 2, part (a). -->
+    </answer>
+    <answer number="2b">
+        <!-- Paste your solution to problem 2, part (b) below this line. --><![CDATA[
+        answer = True
+		explanation = """Joining {A,B,C}, {E,F,A}, we see that {A,B,C} \intersect {E,F,A} = {A} -> {A,E} -> {A,C,E} -> {A,C,E,F} -> {A,E,F} = {E,F,A}.  Thus, {A,B,C} and {E,F,A} form a lossless-join decomposition of {A,B,C,E,F}.
+		Joining {A,B,C,E,F}, {C,D,E}, we see that {A,B,C,E,F} \intersect {C,D,E} = {C,E} -> {C,D,E}, thus {A,B,C,E,F} and {C,D,E} form a lossless-join decomposition of {A,B,C,D,E,F}.
+		Thus, {A,B,C}, {C,D,E}, {E,F,A} form a lossless-join decomposition of {A,B,C,D,E,F}."""
+        ]]><!-- End problem 2, part (b). -->
+    </answer>    
+    <answer number="2c">
+        <!-- Paste your solution to problem 2, part (c) below this line. --><![CDATA[
+		answer = False
+		explanation = """Each pairwise attempt at joining fails to be dependency preserving.
+		In joining {A,B,C}, {E,F,A} we see that (F_{A,B,C} \union F_{E,F,A})^+ does not contain (C->F), while F_{A,B,C,E,F} does.
+		In joining {A,B,C}, {C,D,E} we see that (F_{A,B,C} \union F_{C,D,E})^+ does not contain (A->E), while F_{A,B,C,D,E} does.
+		In joining {C,D,E}, {E,F,A} we see that (F_{C,D,E} \union F_{E,F,A})^+ does not contain (A->C), while F_{A,C,D,E,F} does.
+		Thus, {A,B,C}, {C,D,E}, {E,F,A} do not form a dependency-preserving decomposition."""
+        ]]><!-- End problem 2, part (c). -->
+    </answer>
+    <answer number="2d">
+        <!-- Paste your solution to problem 2, part (d) below this line. --><![CDATA[
+		answer = True
+		explanation = """Because (A -> C), {A} -> {A,C}.
+		Because (A -> E), {A,C} -> {A,C,E}.
+		Because (C -> F), {A,C,E} -> {A,C,E,F}.
+		{A,C,E,F} -> {E,F}.
+		Thus, {A} -> {E,F}."""
+        ]]><!-- End problem 2, part (d). -->
+    </answer>
+    <answer number="2e">
+        <!-- Paste your solution to problem 2, part (e) below this line. --><![CDATA[
+		answer = False
+		explanation = "By contradiction: (C->D) is non trivial, and {C} is not a superkey"
+        ]]><!-- End problem 2, part (e). -->
+    </answer>
+    <!-- END PROBLEM 2 -->
+
+    <!-- BEGIN PROBLEM 3 -->
+    <answer number="3a">
+        <!-- Paste your solution to problem 3, part (a) below this line. --><![CDATA[
+        $$\pi_{name}(\sigma_{year = 2019}(Article) \bowtie Author \bowtie \sigma_{affiliation='UW-Madison'}(Person) )$$
+        ]]><!-- End problem 3, part (a). -->
+    </answer>
+    <answer number="3b">
+        <!-- Paste your solution to problem 3, part (b) below this line. --><![CDATA[
+        $$\pi_{name} (Person \bowtie \sigma_{pid \neq pid2} (Author \bowtie \rho (C(pid \rightarrow pid2), Author)) \bowtie \rho (C(pid \rightarrow pid2), \sigma_{name = 'John Doe'} (Person)))$$
+        ]]><!-- End problem 3, part (b). -->
+    </answer>
+    <answer number="3c">
+        <!-- Paste your solution to problem 3, part (c) below this line. --><![CDATA[
+        $$\gamma_{\emptyset, COUNT(aid)} (\pi_{aid}(\sigma_{year \geq 2010 \land year \leq 2020} (Article) \bowtie Author \bowtie \sigma_{name='John Doe'}(Person)))$$
+        ]]><!-- End problem 3, part (c). -->
+    </answer>
+    <answer number="3d">
+        <!-- Paste your solution to problem 3, part (d) below this line. --><![CDATA[
+        $$\pi_{name}(Person \bowtie Author \bowtie \sigma_{year=2018} (Article) \bowtie \sigma_{confname='SIGMOD'}(
+\rho (C(name \rightarrow confname), Conference))) - \pi_{name}(Person \bowtie Author \bowtie \sigma_{year=2019} (Article) \bowtie \sigma_{confname='SIGMOD'}( \rho (C(name \rightarrow confname), Conference))) $$
+        ]]><!-- End problem 3, part (d). -->
+    </answer>
+    <!-- END PROBLEM 3 -->
+
+</pset>

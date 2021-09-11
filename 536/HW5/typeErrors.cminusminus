@@ -1,0 +1,105 @@
+bool bbb;
+struct S { int a; };
+struct S t;
+
+void f(int p1, bool p2) {
+}
+
+void main() {
+    int aaa;
+
+    // some errors involving illegal operations on functions
+    aaa = f + f;
+    bbb = f == 3;
+    bbb = f > main;
+    bbb = f == f;
+
+    // some errors involving bad function calls 
+    aaa();
+    f();
+    f(5);
+    f(aaa, aaa);
+    f(t, t.a);
+    S();
+
+    // some errors involving structs 
+    t = 5;
+    t = t;
+    cin >> S;
+    t = true || 3;
+    bbb = S && t.a;
+
+    // error involving return
+    return 10;
+
+    // other type errors 
+    aaa = aaa + (!false);
+    aaa = aaa + "foo";
+    bbb = aaa;
+
+    // don't give too many or too few error messages here 
+    bbb = (aaa + true) && (bbb < true);
+}
+
+int g() {
+    int b;
+    int c;
+    bool d;
+
+    d++;
+    d--;
+
+    cin >> f;
+    cin >> S;
+    cin >> t;
+
+    cout << f;
+    cout << S;
+    cout << t;
+    cout << main();
+
+    if (b) {}
+    if (b) {} else {}
+    while (b) {}
+    repeat (d) {}
+
+    return;
+    return d;
+
+    f = main;
+    S = S;
+    t = t;
+    b = d;
+
+    b();
+    main(b);
+    f(d, b);
+
+    b = -d;
+    d = !b;
+    b = b + d;
+    b = b - d;
+    b = b * d;
+    b = b / d;
+
+    d = d && b;
+    d = d || b;
+
+    d = main() == main();
+    d = main == main;
+    d = S == S;
+    d = t == t;
+    d = d == b;
+
+    d = main() != main();
+    d = main != main;
+    d = S != S;
+    d = t != t;
+    d = d != b;
+
+    d = b < d;
+    d = d <= b;
+    d = b > d;
+    d = d >= b;
+}
+

@@ -1,0 +1,412 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+\usepackage{datetime}
+
+\usepackage{changepage}
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{claim*}{Claim}
+\newtheorem{theorem}{Theorem}
+\newtheorem{case}{Case}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{10}{3}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+\noindent\fbox{\textbf{Exercise \#1:}} Prove the following theorem:
+
+\begin{theorem*} If $A \subset \Rb$, $A \neq \emptyset$, and $A$ is bounded below, then $A$ has a greatest lower bound. \end{theorem*}
+
+\begin{proof}
+    Consider $-A = \{ -a : a \in A \}$.  It follows that $A \subset R \implies -A \subset R$, and $A \neq \emptyset \implies -A \neq \emptyset$.
+
+    If $A$ is bounded below, then
+    \begin{align*}
+        \exists x \; \forall a \in A \; \colon x \leq a & \implies \exists x \; \forall a \in A \; \colon -x \geq -a \\
+        & \implies \exists x \; \forall a \in -A \; \colon -x \geq a \\
+        & \implies \exists y \; \forall a \in -A \; \colon y \geq a \\
+        & \implies \exists y \; \forall a \in -A \; \colon a \leq y \\
+    \end{align*}
+
+    Thus, by P13, $-A$ has a least upper bound, say $-u = \sup(A)$.
+
+    \begin{claim*} $u$ is a lower bound of $A$.  
+    \end{claim*}
+
+    \begin{align*}
+        & -u \text{ is an upper bound of } -A \\
+        \implies & \forall a \in -A \; \colon a \leq -u \\
+        \implies & \forall a \in -A \; \colon -a \geq u \\
+        \implies & \forall a \in A \; \colon a \geq u \\
+        \implies & \forall a \in A \; \colon u \leq a \\
+        \implies & u \text{ is a lower bound of } A \\
+    \end{align*}
+
+    \begin{claim*} $x$ is a lower bound of $A \implies x \leq u$
+    \end{claim*}
+
+    \begin{align*}
+        & w \text{ is an upper bound of } -A \implies -u \leq w \\
+        \equiv & -w \text{ is a lower bound of } A \implies -u \leq w \\
+        \equiv & -w \text{ is a lower bound of } A \implies -w \leq u \\ 
+    \end{align*}
+
+    Thus, by definition, $u$ is the greatest lower bound of $A$ $\implies$ $A$ has a greatest lower bound.
+\end{proof} 
+
+
+\noindent\fbox{\textbf{Exercise \#2:}} Prove: If $A, B \subset \Rb$, then 
+
+\begin{align*}
+\sup(A \cap B) \leq \min\{\sup(A), \sup(B)\}
+\end{align*}
+and 
+\begin{align*}
+\inf(A \cap B) \geq \max\{\inf(A), \inf(B)\}.
+\end{align*}
+Find an example where $\sup(A \cap B) < \min\{\sup(A), \sup(B)\}$ and $\inf(A \cap B) < \max\{\inf(A), \inf(B)\}.$
+
+\begin{proof} 
+    We proceed by cases.
+
+    \begin{case} $A = \emptyset$
+
+        Then $\sup(A \cap B) = \sup(\emptyset) = - \infty \leq min\{\sup(A), \sup(B)\} = min\{- \infty, \sup(B)\} = - \infty$.
+
+        Then $\inf(A \cap B) = \inf(\emptyset) = \infty \geq max\{\inf(A), \inf(B)\} = max\{\infty, \inf(B)\} = \infty$.
+    \end{case}
+    \begin{case} $B = \emptyset$
+
+        Then $\sup(A \cap B) = \sup(\emptyset) = - \infty \leq min\{\sup(A), \sup(B)\} = min\{\sup(A), - \infty\} = - \infty$
+
+        Then $\inf(A \cap B) = \inf(\emptyset) = \infty \geq max\{\inf(A), \inf(B)\} = max\{\inf(A), \infty\} = \infty$
+    \end{case}
+    \begin{case} $A, B$ both not bounded above
+
+        Then $\sup(A \cap B) = \infty \leq min\{\sup(A), \sup(B)\} = min\{\infty, \infty \} = \infty$
+        
+        Then $\inf(A \cap B) = - \infty \geq max\{\inf(A), \inf(B)\} = max\{- \infty, - \infty \} = - \infty$
+    \end{case}
+    \begin{case} $A$ not bounded above, $B$ bounded above
+
+        Then $\sup(A \cap B) = \sup(B) \leq min\{\sup(A), \sup(B)\} = min\{\infty, \sup(B) \} = \sup(B)$
+        
+        Then $\inf(A \cap B) = \inf(B) \geq max\{\inf(A), \inf(B)\} = max\{-\infty, \inf(B) \} = \inf(B)$
+    \end{case}
+    \begin{case} $A$ bounded above, $B$ not bounded above
+
+        Then $\sup(A \cap B) = \sup(A) \leq min\{\sup(A), \sup(B)\} = min\{\sup(A), \infty \} = \sup(A)$
+
+        Then $\inf(A \cap B) = \inf(A) \geq max\{\inf(A), \inf(B)\} = max\{\inf(A), -\infty \} = \inf(A)$
+    \end{case}
+    \begin{case} $A,B$ both bounded above \\
+        Concerning $\sup$:
+        \begin{adjustwidth}{2em}{0pt}
+            Let $\alpha = min\{sup(A), sup(B)\}$.
+            \begin{claim*} $\alpha$ is an upper bound of $A \cap B$. \\
+                Suppose $x \in A \cap B$.  Then $x \in A$ and $x \in B$.
+
+                If $\alpha = \sup(A)$, then $x \leq \sup(A) = \alpha$
+
+                If $\alpha = \sup(B)$, then $x \leq \sup(B) = \alpha$
+
+                Since $x \in A \cap B$ was arbitrary, $\alpha$ is an upper bound for $A \cap B$.
+            \end{claim*}
+            \begin{claim*} $\alpha$ is the least upper bound of $A \cap B$. \\
+                Suppose $x$ is an upper bound of $A \cap B$. Then $x$ is an upper bound for $A$ or an upper bound for $B$.
+
+                If $x$ is an upper bound for $A$, then $x \leq \sup(A) \leq min\{\sup(A), \sup(B)\} = \alpha$.
+
+                If $x$ is an upper bound for $B$, then $x \leq \sup(B) \leq min\{\sup(A), \sup(B)\} = \alpha$.
+
+                Thus $x \leq \alpha$.
+
+                Since $x$ was arbitrary, $\alpha$ is the least upper bound of $A \cap B$.
+            \end{claim*}
+        \end{adjustwidth}
+
+        Concerning $\inf$:
+        \begin{adjustwidth}{2em}{0pt}
+            Let $\alpha = max\{\inf(A), \inf(B)\}$.
+            \begin{claim*} $\alpha$ is a lower bound of $A \cap B$. \\
+                Suppose $x \in A \cap B$.  Then $x \in A$ and $x \in B$.
+
+                If $\alpha = \inf(A)$, then $x \geq \inf(A) = \alpha$
+
+                If $\alpha = \inf(B)$, then $x \geq \inf(B) = \alpha$
+
+                Since $x \in A \cap B$ was arbitrary, $\alpha$ is a lower bound for $A \cap B$.
+            \end{claim*}
+            \begin{claim*} $\alpha$ is the greatest lower bound of $A \cap B$. \\
+                Suppose $x$ is a lower bound of $A \cap B$. Then $x$ is a lower bound for $A$ or a lower bound for $B$.
+
+                If $x$ is a lower bound for $A$, then $x \geq \inf(A) \geq max\{\inf(A), \inf(B)\} = \alpha$.
+
+                If $x$ is a lower bound for $B$, then $x \geq \inf(B) \geq max\{\inf(A), \inf(B)\} = \alpha$.
+
+                Thus $x \geq \alpha$.
+
+                Since $x$ was arbitrary, $\alpha$ is the greatest lower bound of $A \cap B$.
+            \end{claim*}
+        \end{adjustwidth}
+
+    \end{case}
+
+\end{proof} 
+
+\begin{example*} $A = \{0,2,4\}$, $B = \{1,2,3\}$, $A \cap B = \{2\}$
+
+    $\sup(A \cap B) = 2 < 3 = min\{3,4\} = min\{\sup(A), \sup(B) \}$
+
+    $\inf(A \cap B) = 2 > 1 = max\{0,1\} = max\{\inf(A), \inf(B) \}$
+
+\end{example*}
+
+
+
+\noindent\fbox{\textbf{Exercise \#3:}} Prove the following lemma from class:
+
+\begin{lemma*} If $f$ is continuous on $[a,b]$ and $f(a) < 0 < f(b)$, then there exist $\delta_1, \delta_2 > 0$ such that 
+\begin{enumerate}
+\item $f$ is negative on $[a,a+\delta_1)$
+\item $f$ is positive on $(b-\delta_2, b]$.
+\end{enumerate}
+\end{lemma*}
+
+\begin{proof}[Proof of (1)]
+    By a theorem proved in class, if $f(a) < 0$, then $\exists \delta_1 > 0\; \forall x \; \colon |x-a| < \delta_1 \implies f(x) < 0$.
+
+    $|x-a| < \delta_1 \implies - \delta_1 < x - a < \delta_1 \implies a - \delta_1 < x < a + \delta_1 \implies x \in (a - \delta_1, a + delta_1) \supset [a, a + delta_1)$.
+
+    Thus, $\exists \delta_1 \; \forall x \; \colon x \in [a, a + \delta_1) \implies f(x) < 0$.
+\end{proof} 
+\begin{proof}[Proof of (2)]
+    By a theorem proved in class, if $f(b) > 0$, then $\exists \delta_2 > 0\; \forall x \; \colon |x-b| < \delta_2 \implies f(x) > 0$.
+
+    $|x-b| < \delta_2 \implies - \delta_2 < x - b < \delta_2 \implies b - \delta_2 < x < b + \delta_2 \implies x \in (b - \delta_2, b + delta_2) \supset (b - \delta_2, b]$
+
+    Thus, $\exists \delta_2 \; \forall x \; \colon x \in (b - \delta_2, b] \implies f(x) > 0$.
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#4:}} Prove the following theorem from class (in Chapter 6): 
+
+\begin{theorem*} If $a < b$,  then there exists an irrational number $x$ with $a < x < b$. 
+\end{theorem*}
+
+\begin{proof}
+    Since $b - a > 0$, $\exists n \in \mathbb{N} \; \colon$
+
+    \begin{align*}
+        & n > \frac{\sqrt{2}}{b-a} \\
+        \implies & \frac{1}{n} < \frac{b-a}{\sqrt{2}} \\
+        \implies & \frac{\sqrt{2}}{n} < b-a \\
+        \implies & \frac{1}{n} < \frac{\sqrt{2}}{n} < b-a \\
+        \implies & a + \frac{1}{n} < a + \frac{\sqrt{2}}{n} < b \\
+    \end{align*}
+
+    $\frac{\sqrt{2}}{n} \notin \mathbb{Q}$, $\frac{1}{n} \in \mathbb{Q}$.
+
+    If $a \in \mathbb{Q}$, then $a + \frac{\sqrt{2}}{n} \notin \mathbb{Q}$.
+
+    If $a \notin \mathbb{Q}$, then $a + \frac{1}{n} \notin \mathbb{Q}$.
+
+    Thus, $\forall a,b \in \mathbb{R} \; \exists x \notin \mathbb{Q} \; \colon a < x < b$.
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#5:}} Spivak, Chapter 8, Problem 3 (b)
+
+\begin{theorem*} Theorem 7-1 is provable using consideration of the set $B = \{x \in [a,b] \colon f(x) < 0 \}$.
+\end{theorem*}
+
+\begin{proof}
+    Let $B = \{x \in [a,b] \colon f(x) < 0 \}$. $a \in B \implies B \neq \emptyset$.
+
+    $B$ is bounded above by $b$, thus $\sup(B)$ exists, $\sup(B) \in [a,b]$, and $\sup(B)$ is the least upper bound of $B$.
+
+    \begin{claim*} $a < \sup(B) < b$
+        
+        By the lemma discussed in the proof of 7-1 in class, 
+
+        $\exists \delta_1 \; \colon f$ is negative on $[a, a+\delta_1)$.
+
+        and $\exists \delta_2 \; \colon f$ is positive on $(b-\delta_2, b]$.
+
+        $[a, a-\delta_1) \subset B \implies \sup(B) \geq a + \delta_1 > a$.
+
+        $B \subset [a, b - \delta_2] \implies \sup(B) \leq b - \delta_2 < b$.
+    \end{claim*}
+    \begin{claim*} $f(\sup(B)) = 0$
+
+        Suppose for a contradiction that $f(\sup(B)) \neq 0$
+
+        We proceed by cases
+        \setcounter{case}{0}
+
+        \begin{case} $f(\sup(B)) > 0$
+
+            By Theorem 6.3, $\exists \delta > 0 \; \colon f$ is positive on $(\sup(B) - \delta, \sup(B) + \delta)$.
+
+            Then $\sup(B) - \delta$ is an upper bound, but $\sup(B)$ is the least upper bound.  This is a contradiction.
+        \end{case}
+
+        \begin{case} $f(\sup(B)) < 0$
+
+            By Theorem 6.3, $\exists \delta > 0 \; \colon f$ is negative on $(\sup(B) - \delta, \sup(B) + \delta)$.
+
+            By a result in class, $\exists x \in B \; \colon \sup(B) - \delta < x \leq \sup(B)$.  
+
+            But by properties of the supremum, $x \in B$.
+
+            So $f$ is negative on $B \cup (\sup(B) - \delta, \sup(B) + \delta)$.
+
+            Thus $B \cup (\sup(B) - \delta, \sup(B) + \delta) \subset B$, but this means $\sup(B)$ is not an upper bound of $B$.  This is a contraction.
+        \end{case}
+
+        Thus $f(\sup(B)) = 0$
+    \end{claim*}
+
+    (This proof occurs in the vicinity of $x = \sup(B)$)
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#6:}} Spivak, Chapter 8, Problem 8 (a)
+
+\begin{theorem*} Suppose $f$ is a function such that $a < b \implies f(a) \leq f(b)$
+
+    $\lim_{x \to a^-} f(x)$ and $\lim_{x \to a^+} f(x)$ both exist. 
+\end{theorem*}
+
+\begin{proof} $\lim_{x \to a^-} f(x)$ exists. 
+    Since $x<a \implies f(x) \leq f(a)$, the set $A = \{f(x) : x < a \}$ is bounded above (one upper bound is $f(a)$).
+
+    Let $L = \sup(A)$.
+
+    Fix $\epsilon > 0$.
+
+    $x < a \implies 0 < a-x \implies f(x) < L \implies f(x) < L + \epsilon$.
+
+    By a theorem in class, $\exists y \; \colon L - \epsilon < f(y) \leq L \implies L - \epsilon < f(y)$.
+
+    Let $\delta = a -y$. It follows that
+
+    \begin{align*}
+        & \forall x \; \colon y < x < a \; \colon L - \epsilon < f(y) \leq f(x) \leq \sup(A) = L \\
+        \implies & \forall x \; \colon y < x < a \; \colon L - \epsilon < f(y) \leq f(x) \leq \sup(A) = L < L + \epsilon \\
+        \implies & \forall x \; \colon y < x < a \; \colon L - \epsilon < f(x) < L + \epsilon \\
+        \implies & \forall x \; \colon -a < -x < -y \; \colon L - \epsilon < f(x) < L + \epsilon \\
+        \implies & \forall x \; \colon 0 < a-x < a-y \; \colon L - \epsilon < f(x) < L + \epsilon \\
+        \implies & \forall x \; \colon 0 < a-x < \delta \; \colon L - \epsilon < f(x) < L + \epsilon \\
+    \end{align*}
+
+    Thus $\lim_{x \to a^-} f(x) = \sup(A)$ exists.
+\end{proof} 
+
+\begin{proof} $\lim_{x \to a^+} f(x)$ exists. 
+    Since $x<a \implies f(x) \leq f(a)$, the set $A = \{f(x) : x > a \}$ is bounded below.
+
+    Let $L = \inf(A)$.
+
+    Fix $\epsilon > 0$.
+
+    $x > a \implies 0 < x-a \implies L < f(x) \implies L - \epsilon < f(x)$.
+
+    By a theorem in class, $\exists y \; \colon L \leq f(y) < L + \epsilon \implies f(y) < L + \epsilon$.
+
+    Let $\delta = y-a$. It follows that
+
+    \begin{align*}
+        & \forall x \; \colon a < x < y \; \colon L = \sup(A) \leq f(x) < f(y) < L + \epsilon \\
+        \implies & \forall x \; \colon a < x < y \; \colon L - \epsilon < f(x) < L + \epsilon \\
+        \implies & \forall x \; \colon 0 < x-a < y-a \; \colon L - \epsilon < f(x) < L + \epsilon \\
+        \implies & \forall x \; \colon 0 < x-a < \delta \; \colon L - \epsilon < f(x) < L + \epsilon \\
+    \end{align*}
+
+    Thus $\lim_{x \to a^+} f(x) = \inf(A)$ exists.
+\end{proof} 
+
+
+\section{Extra Credit Questions} 
+
+Each extra credit question is worth 1 extra point. \\
+
+\noindent\fbox{\textbf{Exercise E.C.\#1:}} Spivak, Chapter 8, Problem 14 (a)
+
+\begin{theorem*} Consider a sequence of closed intervals $I_1 = [a_1, b_1], I_2 = [a_2, b_2], \cdots$.
+
+    Suppose that $\forall n \; \colon a_n \leq a_{n+1}$ and $\forall n \; \colon b_{n+1} \leq b_{n}$
+
+    $\exists x \; \forall n \; \colon x \in I_n$
+\end{theorem*}
+
+\begin{proof}
+    Notice that $\forall n \; \colon a_1 \leq a_2 \leq \cdots \leq a_{n-1} \leq a_n \leq b_n \leq b_{n-1} \leq \cdots \leq b_2 \leq b_1$.
+
+    Let $A = \{a_n \colon n \in \mathbb{N}\}$
+
+    Because $a_1 \in A \implies A \neq \emptyset$, $A$ is bounded above ($b_1$ is an upper bound), then $x = \sup(A)$ exists.
+
+    By definition, $\forall n \; \colon a_n \leq x$.
+
+    Because $\forall n,m \; \colon a_n \leq b_m$, then $\forall m \; \colon b_m$ is an upper bound of $A$.  Thus, $\forall m \; \colon x \leq b_m$.
+
+    Thus $\forall n \; \colon a_n \leq x \leq b_n \implies \forall n \; \colon x \in [a_n, b_n] \implies \forall n \; \colon x \in I_n$
+\end{proof} 
+
+
+
+
+
+
+
+    
+
+
+
+
+
+    
+    
+\end{document}

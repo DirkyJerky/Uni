@@ -1,0 +1,89 @@
+bool bbb;
+struct S{
+    int a;
+};
+
+struct S t;
+void f(int p1, bool p2) {
+}
+
+void main() {
+    int aaa;
+    aaa(int) = (f(int,bool->void) + f(int,bool->void));
+    bbb(bool) = (f(int,bool->void) == 3);
+    bbb(bool) = (f(int,bool->void) > main(->void));
+    bbb(bool) = (f(int,bool->void) == f(int,bool->void));
+    aaa(int)();
+    f(int,bool->void)();
+    f(int,bool->void)(5);
+    f(int,bool->void)(aaa(int), aaa(int));
+    f(int,bool->void)(t(S), t(S).a(int));
+    S(struct)();
+    t(S) = 5;
+    t(S) = t(S);
+    cin >> S(struct);
+    t(S) = (true || 3);
+    bbb(bool) = (S(struct) && t(S).a(int));
+    return 10;
+    aaa(int) = (aaa(int) + (!false));
+    aaa(int) = (aaa(int) + "foo");
+    bbb(bool) = aaa(int);
+    bbb(bool) = ((aaa(int) + true) && (bbb(bool) < true));
+}
+
+int g() {
+    int b;
+    int c;
+    bool d;
+    d(bool)++;
+    d(bool)--;
+    cin >> f(int,bool->void);
+    cin >> S(struct);
+    cin >> t(S);
+    cout << f(int,bool->void);
+    cout << S(struct);
+    cout << t(S);
+    cout << main(->void)();
+    if (b(int)) {
+    }
+    if (b(int)) {
+    }
+    else {
+    }
+    while (b(int)) {
+    }
+    repeat (d(bool)) {
+    }
+    return;
+    return d(bool);
+    f(int,bool->void) = main(->void);
+    S(struct) = S(struct);
+    t(S) = t(S);
+    b(int) = d(bool);
+    b(int)();
+    main(->void)(b(int));
+    f(int,bool->void)(d(bool), b(int));
+    b(int) = (-d(bool));
+    d(bool) = (!b(int));
+    b(int) = (b(int) + d(bool));
+    b(int) = (b(int) - d(bool));
+    b(int) = (b(int) * d(bool));
+    b(int) = (b(int) / d(bool));
+    d(bool) = (d(bool) && b(int));
+    d(bool) = (d(bool) || b(int));
+    d(bool) = (main(->void)() == main(->void)());
+    d(bool) = (main(->void) == main(->void));
+    d(bool) = (S(struct) == S(struct));
+    d(bool) = (t(S) == t(S));
+    d(bool) = (d(bool) == b(int));
+    d(bool) = (main(->void)() != main(->void)());
+    d(bool) = (main(->void) != main(->void));
+    d(bool) = (S(struct) != S(struct));
+    d(bool) = (t(S) != t(S));
+    d(bool) = (d(bool) != b(int));
+    d(bool) = (b(int) < d(bool));
+    d(bool) = (d(bool) <= b(int));
+    d(bool) = (b(int) > d(bool));
+    d(bool) = (d(bool) >= b(int));
+}
+

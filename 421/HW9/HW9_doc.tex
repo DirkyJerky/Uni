@@ -1,0 +1,170 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage[usenames]{color}
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage{datetime}
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{10}{3}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+
+\noindent\fbox{\textbf{Exercise \#1:}} Assuming that $f(x) =\sqrt{x}$ is continuous on $[0,\infty)$, prove using the limit definition that: if $g(x) = \sqrt{x^2+1}$, then $g^\prime(x) = \frac{x}{\sqrt{x^2+1}}$ when $x > 0$. 
+
+\begin{proof}
+    Notice that because $g(x) = f(x^2 + 1)$, and $\forall x \; \colon x^2 + 1 > 0$, both $g(a)$ and $g(a+h)$ are continuous, and so is $\frac{g(a+h) - g(a)}{h}$ when $h \neq 0$. Thus,
+
+    \begin{align*}
+        & \lim_{h \to 0} \frac{g(a+h) - g(a)}{h} \\
+        = & \lim_{h \to 0} \frac{\sqrt{a^2 + 2ah + h^2 + 1} - \sqrt{a^2 + 1}}{h} \\
+        = & \lim_{h \to 0} \frac{\sqrt{a^2 + 2ah + h^2 + 1} - \sqrt{a^2 + 1}}{h} * \frac{\sqrt{a^2 + 2ah + h^2 + 1} + \sqrt{a^2 + 1}}{\sqrt{a^2 + 2ah + h^2 + 1} + \sqrt{a^2 + 1}} \\
+        = & \lim_{h \to 0} \frac{a^2 + 2ah + h^2 + 1 - a^2 + 1}{h  (\sqrt{a^2 + 2ah + h^2 + 1} + \sqrt{a^2 + 1})} \\
+        = & \lim_{h \to 0} \frac{2ah + h^2}{h  (\sqrt{a^2 + 2ah + h^2 + 1} + \sqrt{a^2 + 1})} \\
+        = & \lim_{h \to 0} \frac{2a + h}{(\sqrt{a^2 + 2ah + h^2 + 1} + \sqrt{a^2 + 1})} \\
+        = & \frac{2a}{(\sqrt{a^2 + 1} + \sqrt{a^2 + 1})} \\
+        = & \frac{a}{\sqrt{a^2 + 1}} \\
+    \end{align*}
+
+    Thus, the limit exists, and $g'(a) = \frac{a}{\sqrt{a^2 + 1}}$.
+\end{proof}
+
+\noindent\fbox{\textbf{Exercise \#2:}} Suppose $f$ and $g$ are differentiable at $x=a$. If $f(a) = g(a)$, $f^\prime(a) = g^\prime(a)$, and 
+\begin{align*}
+k(x) = \begin{cases} 
+f(x) & \text{if } x \leq a \\
+g(x) & \text{if } x \geq a
+\end{cases},
+\end{align*}
+then $k$ is differentiable at $x=a$ and $k^\prime(a) =f^\prime(a)=g^\prime(a)$.  
+
+
+
+
+\begin{proof}
+    Notice that $f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} = \lim_{h \to 0^-} \frac{f(a+h) - f(a)}{h}$,
+
+    and $g'(a) = \lim_{h \to 0} \frac{g(a+h) - g(a)}{h} = \lim_{h \to 0^+} \frac{g(a+h) - g(a)}{h}$.
+
+    Then, $\lim_{h \to 0^-} \frac{k(a+h) - k(a)}{h} = \lim_{h \to 0^-} \frac{f(a+h) - f(a)}{h} = f'(a)$.
+
+    Then, $\lim_{h \to 0^+} \frac{k(a+h) - k(a)}{h} = \lim_{h \to 0^+} \frac{g(a+h) - g(a)}{h} = g'(a)$.
+
+    Because $f'(a) = g'(a)$, $\lim_{h \to 0} \frac{k(a+h) - k(a)}{h} = f'(a) = g'(a)$ exists, $k$ is differentiable at $a$, and $k'(a) = \lim_{h \to 0} \frac{k(a+h) - k(a)}{h}$.
+\end{proof}
+
+  \noindent\fbox{\textbf{Exercise \#3:}} Spivak, Chapter 9, Problem 15 (a) 
+
+\begin{theorem*} 
+    Let $f$ be a function such that $\forall x \; \colon |f(x)| \leq x^2$.
+
+    $f$ is differentiable at $0$.
+\end{theorem*}
+  
+\begin{proof} 
+    Let $a = 0$.
+
+    Notice that $|f(0)| \leq 0^2 \implies f(0) = 0$.
+
+    So, $\lim_{h \to 0} \frac{f(a+h) - f(a)}{h} = \lim_{h \to 0} \frac{f(h) - f(0)}{h} = \lim_{h \to 0} \frac{f(h) - f(0)}{h} = \lim_{h \to 0} \frac{f(h)}{h}$. 
+
+    Notice that $|\frac{f(h)}{h}| \leq \frac{h^2}{|h|} = |\frac{h^2}{h}| = |h|$.
+
+    Thus, $\lim_{h \to 0} \frac{f(h)}{h} \leq \lim_{h \to 0} |h| = 0$, thus $\lim_{h \to 0} \frac{f(h)}{h} = 0$.
+
+    Thus, the limit exists, and $f$ is differentiable at $0$.
+\end{proof}
+  
+    \noindent\fbox{\textbf{Exercise \#4:}} Spivak, Chapter 10, Problem 16 (a), (b)
+
+\begin{theorem*} 
+    If $f$ is differentiable at $a$ and $f(a) \neq 0$, then $|f|$ is differentiable at $a$.
+\end{theorem*}
+  
+\begin{proof}[4a]
+    Because $f(a) \neq 0$, $\exists \delta \; \colon f(a)$ is either positive or negative on $(a - \delta, a + \delta)$.
+
+    By considering when $|h| \leq \delta$, $f(a+h)$ and $f(a)$ will either both be positive or both be negative.
+
+    If $f(a) > 0$, then $\lim_{h \to 0} \frac{|f(a+h)| - |f(a)|}{h} = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} = f'(a)$ exists.
+    If $f(a) < 0$, then $\lim_{h \to 0} \frac{|f(a+h)| - |f(a)|}{h} = \lim_{h \to 0} \frac{-f(a+h) + f(a)}{h} = -f'(a)$ exists.
+
+    Thus, $|f|$ is differentiable at $a$.
+\end{proof}
+\begin{proof}[4b]
+    Let $f(x) = x$.
+
+    Then $\lim_{h \to 0+} \frac{|f(a+h)| - |f(a)|}{h} \neq \lim_{h \to 0-} \frac{|f(a+h)| - |f(a)|}{h}$, because the $f(a+h)$ terms differ in each limit.
+
+    So $\lim_{h \to 0} \frac{|f(a+h)| - |f(a)|}{h}$ does not exist, and $|x|$ is not differentiable at $0$.
+\end{proof}
+
+    \noindent\fbox{\textbf{Exercise \#5:}} Spivak, Chapter 10, Problem 22 (a)
+
+\begin{theorem*} 
+    If $f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0$, then $\exists g,h \; \colon g' = h' = f$, and $g \neq h$.
+\end{theorem*}
+
+\begin{proof} 
+    Let $g(x) = \frac{a_n}{n+1} x^{n+1} + \frac{a_{n-1}}{n} x^n + \cdots + \frac{a_0}{1} x + 1$.
+
+    Let $h(x) = g(x) + 1$.
+
+    By applying theorems 10-1 through 10-6,
+
+    $g'(x) = \frac{a_n (n+1)}{n+1} x^n + \frac {a_{n-1} (n)}{n} x^{n-1} + \cdots + a_0 = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0 = f(x)$.
+
+    Likewise,
+    
+    $h'(x) = \frac{a_n (n+1)}{n+1} x^n + \frac {a_{n-1} (n)}{n} x^{n-1} + \cdots + a_0 = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0 = f(x)$.
+\end{proof}
+
+    
+\end{document}

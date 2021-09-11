@@ -1,0 +1,16 @@
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{10}{3}{2021}
+    }
+    
+    \vspace{15pt}

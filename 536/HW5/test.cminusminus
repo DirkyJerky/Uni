@@ -1,0 +1,155 @@
+int x;
+bool y;
+
+int fn1() {}
+
+bool fn2(int x, bool y) {}
+
+struct stru {
+	int x;
+	bool y;
+};
+
+void allStmts() {
+    int ib;
+    int x;
+    int y;
+    int a;
+    int b;
+    bool c;
+	bool i;
+	bool h;
+	bool j;
+	bool k;
+	bool l;
+	bool m;
+	bool n;
+	bool o;
+	bool p;
+	bool q;
+    int r;
+    int s;
+    int t;
+    int u;
+	
+    if (ib == -1) { x = 4+3*5-y; while (c) { y = y*2+x; } } else { x = 0; }
+    
+    a = 1;
+    b++;
+    b--;
+    cin >> b;
+    cout << c;
+    if (c) {}
+    if (q) {
+    	int g;
+    }
+    if (h) {
+    	return;
+    }
+    if (i) {
+    	bool i;
+    	return;
+    }
+    if (j) {} else {}
+    if (k) {
+    	bool k;
+    } else {
+    	return;
+    }
+    if (l) {
+    	return;
+    } else {
+    	bool l;
+    }
+    if (m) {
+    	int m;
+    	return;
+    } else {
+    	int m;
+    	return;
+    }
+    while (n) {}
+    while (o) {
+    	bool o;
+    }
+    while (p) {
+    	return;
+    }
+    while (q) {
+    	return;
+    }
+    repeat (r) {}
+    repeat (s) {
+    	bool s;
+    }
+    repeat (t) {
+    	return;
+    }
+    repeat (u) {
+    	return;
+    }
+    return;
+    fn1();
+    fn2(1,true);
+}
+
+int allIntExps() {
+    int a;
+    int b;
+    int c;
+    int d;
+    int e;
+    int i;
+    int j;
+    int k;
+    int l;
+    int m;
+    int n;
+    int o;
+    int p;
+    bool out;
+    struct stru s;
+    
+	return a = 1;
+	return b + b;
+	return c - c;
+	return d * d;
+	return e / e;
+	out = i == i;
+	out = j != j;
+	out = k < k;
+	out = l > l;
+	out = m <= m;
+	out = n >= n;
+	return -o;
+	
+	return p;
+	return s.x;
+	return 0;
+	return 100000;
+	return fn1();
+}
+
+bool allBoolExps() {
+    bool a;
+    bool f;
+    bool g;
+    bool h;
+    bool i;
+    bool j;
+    bool p;
+    struct stru s;
+    
+	return a = true;
+	return !f;
+	return g && g;
+	return h || h;
+	return i == i;
+	return j != j;
+	
+	return p;
+	return s.y;
+	return true;
+	return false;
+	return fn2(1, true);
+}

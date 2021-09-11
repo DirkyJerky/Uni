@@ -1,0 +1,309 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage[usenames]{color}
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage{datetime}
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{22}{4}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+\noindent\fbox{\textbf{Exercise \#1:}} Spivak, Chapter 11, Problem 53
+\begin{theorem*}
+    Suppose
+    $$
+    f(x) = \begin{cases}
+        \frac{g(x)}{x} & x \neq 0 \\
+        0 & x = 0
+    \end{cases}
+    $$ 
+    and $g(0) = g'(0) = 0$ and $g''(0) = 17$.
+
+    Find $f'(0)$
+\end{theorem*}
+\begin{proof}
+    Notice that $\lim_{h \to 0} g'(h) = 0$ and $\lim_{h \to 0} 2h = 0$, and $\lim_{h \to 0} \frac{g''(h)}{2} = \frac{17}{2}$ exists.
+
+    By L'Hopitals rule, $\lim_{h \to 0} \frac{g'(h)}{2h}$ exists, and is equal to $\lim_{h \to 0} \frac{g''(h)}{2}$.
+
+    Notice that $\lim_{h \to 0} g(h) = 0$ and $\lim_{h \to 0} h^2 = 0$.
+
+    By L'Hopitals rule, $\lim_{h \to 0} \frac{g(h)}{h^2}$ exists, and is equal to $\lim_{h \to 0} \frac{g'(h)}{2h}$.
+
+    Then,
+    \begin{align*}
+        f'(0) &= \lim_{h \to 0} \frac{f(h) - f(0)}{h} \\
+        &= \lim_{h \to 0} \frac{f(h)}{h} \\
+        &= \lim_{h \to 0} \frac{g(h)}{h^2} \\
+        &= \lim_{h \to 0} \frac{g'(h)}{2h} \\
+        &= \lim_{h \to 0} \frac{g(h)}{2} \\
+        &= \frac{17}{2} \\
+    \end{align*}
+
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#2:}} Spivak, Chapter 11, Problem 65
+
+\begin{theorem*}
+    If $n \geq 1$, then $(-1 < x < 0 \lor 0 < x ) \implies (1+x)^n > 1 + nx$.
+\end{theorem*}
+\begin{proof} 
+    Let $g(x) = (1+x)^n - 1 - nx$.
+
+    Then $g'(x) = n(1+x)^{n-1} - n = n((1+x)^{n-1} - 1)$.
+
+    Notice that $n-1 \geq 0$.
+
+    Cases on $x$:
+
+    If $-1 < x < 0$, then $(1+x) < 1 \implies (1+x)^{n-1} < 1 \implies g'(x) < 0$.
+
+    If $0 < x$, then $(1+x) > 1 \implies (1+x)^{n-1} > 1 \implies g'(x) > 0$.
+
+    By corollary, $g$ is decreasing on $(-1,0)$, and increasing on $(0, \infty)$.
+
+    Thus, by definition, $-1 < x < 0 \implies g(x) > 0$ and $x > 0 \implies g(x) > 0$.
+
+    $\equiv -1 < x < 0 \lor 0 < x \implies (1+x)^n > 1+nx$.
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#3:}} If $P,Q$ are partitions of $[a,b]$, $P \subset Q$, $Q$ has one more element than $P$, and $f$ is bounded on $[a,b]$, then $U(f,P) \geq U(f,Q)$. 
+
+\begin{proof}
+    By assumption, $P = \{ t_0, \cdots, t_n \}$, $Q = \{ t_0, \cdots, t_{k-1}, u, t_k, \cdots, t_n \}$
+
+    Let $M_i = \sup \{ f(x) : t_{i-1} \leq x \leq t_i \}$.
+
+    Let $M' = \sup \{ f(x) : t_{k-1} \leq x \leq u \}$.
+
+    Let $M'' = \sup \{ f(x) : u \leq x \leq t_k \}$.
+
+    Then $U(f,P) = \sum_{i=1}^{n} M_i (t_i - t_{i-1})$.
+
+    Then $U(f,Q) = (\sum_{i=1}^{k-1} M_i (t_i - t_{i-1})) + m'(u - t_{k-1}) + m''(t_k - u) + \sum_{j = k+1}^{n} M_j (t_j - t_{j-1})$.
+
+    So $U(f,Q) - U(f,P) = M'(u - t_{k-1}) + M''(t_k - u) - M_k(t_k - t_{k+1})$.
+
+    By defn, $M' \leq M_k$, $M'' \leq M_k$.
+
+    So $U(f,Q) - U(f,P) \leq M_k(u - t_{k-1}) + M_k(t_k - u) - M_k(t_k - t_{k-1}) = 0$.
+
+    So $U(f,Q) \leq U(f,P)$.
+\end{proof}
+
+
+
+\noindent\fbox{\textbf{Exercise \#4:}} Suppose $f$ is integrable on $[a,b]$. Prove: if $c \in \Rb$, then $c f$ is integrable on $[a,b]$ and $\int_a^b c f =c \int_a^b f$.
+
+(Hint: how to $L(f,P)$, $L(cf,P)$, $U(f,P)$, and $U(cf,P)$ relate? It is a good idea to treat the cases $c \leq 0$ and $c \geq 0$ separately. )
+
+\begin{proof}
+    Assuming several properties of $\sup$ and $\inf$.
+
+    \begin{enumerate}
+        \item $c \geq 0: \inf\{c * a : a \in A\} = c * \inf\{a : a \in A\}$
+        \item $c \geq 0: \sup\{c * a : a \in A\} = c * \sup\{a : a \in A\}$
+        \item $c \leq 0: \inf\{c * a : a \in A\} = c * \sup\{a : a \in A\}$
+        \item $c \leq 0: \sup\{c * a : a \in A\} = c * \inf\{a : a \in A\}$
+    \end{enumerate}
+
+    Notice that "$f$ is bounded on $[a,b]$" $\implies$ "$cf$ is bounded on $[a,b]$".
+
+    If $c \geq 0$, because $f$ is integrable on $[a,b]$, and $\int_a^b f = \sup\{L(f,P)\} = \inf\{U(f,P)\}$,
+
+    Then,
+
+    \begin{align*}
+        \implies & c * \int_a^b f & & \\
+        \equiv \; & c * \sup\{L(f,P)\} & & = c * \inf\{U(f,P)\} \\
+        \equiv \; & \sup\{c * L(f,P)\} & & = \inf\{c * U(f,P)\} \\
+        \equiv \; & \sup\{c * \sum_{i=1}^{n} \inf \{f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} & & = \inf\{c * \sum_{i=1}^{n} \sup \{f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} \\
+        \equiv \; & \sup\{\sum_{i=1}^{n} \inf \{c * f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} & & = \inf\{\sum_{i=1}^{n} \sup \{c * f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} \\
+        \equiv \; & \sup\{L(cf,P)\} & & = \inf\{U(cf,P)\} \\
+        \equiv \; & \int_a^b cf && \\
+        \implies & cf \text{ is integrable on } [a,b] \\
+    \end{align*}
+
+    If $c \leq 0$, because $f$ is integrable on $[a,b]$, and $\int_a^b f = \sup\{L(f,P)\} = \inf\{U(f,P)\}$,
+
+    Then,
+
+    \begin{align*}
+        \implies & c * \int_a^b f & & \\
+        \equiv \; & c * \sup\{L(f,P)\} & & = c * \inf\{U(f,P)\} \\
+        \equiv \; & \inf\{c * L(f,P)\} & & = \sup\{c * U(f,P)\} \\
+        \equiv \; & \inf\{c * \sum_{i=1}^{n} \inf \{f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} & & = \sup\{c * \sum_{i=1}^{n} \sup \{f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} \\
+        \equiv \; & \inf\{\sum_{i=1}^{n} \sup \{c * f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} & & = \sup\{\sum_{i=1}^{n} \inf \{c * f(x) : t_{i-1} \leq x \leq t_i\}(t_i - t_{i-1})\} \\
+        \equiv \; & \inf\{U(cf,P)\} & & = \sup\{L(cf,P)\} \\
+        \equiv \; & \int_a^b cf && \\
+        \implies & cf \text{ is integrable on } [a,b] \\
+    \end{align*}
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#5:}} Spivak, Chapter 13, Problem 20 (a), (b), and (c) 
+
+\begin{theorem*}
+    Suppose that $f$ is nondecreasing on $[a,b]$.
+
+    If $P = {t_0, \cdots, t_n}$ is a partition of $[a,b]$, what is $L(f,P)$ and $U(f,P)$?
+\end{theorem*}
+\begin{proof}[Proof of (a)]
+    By definition, $m_i = \inf \{ f(x) : t_{i-1} \leq x \leq t_i \}$.
+
+    By definition, $M_i = \sup \{ f(x) : t_{i-1} \leq x \leq t_i \}$.
+
+    Since $f$ is nondecreasing on $[a,b]$, $t_{i-1} \leq x \implies f(t_{i-1}) \leq f(x)$.
+
+    Thus, $m_i = f(t_{i-1})$, and $L(f,P) = \sum_{i=1}^{n} f(t_{i-1})(t_i - t_{i-1})$.
+
+    Thus, $M_i = f(t_{i})$, and $U(f,P) = \sum_{i=1}^{n} f(t_{i})(t_i - t_{i-1})$.
+\end{proof}
+
+\begin{theorem*}
+    Suppose $\forall i \; \colon t_i - t_{i-1} = \delta$.
+
+    Prove $U(f,P) - L(f,P) = \delta * (f(b) - f(a))$.
+\end{theorem*}
+\begin{proof}[Proof of (b)]
+    Then $L(f,P) = \sum_{i=1}^{n} f(t_{i-1}) * \delta$.
+
+    Then $U(f,P) = \sum_{i=1}^{n} f(t_{i}) * \delta$.
+
+    Then $U(f,P) - L(f,P) = \delta * (f(t_1) + \cdots + f(t_n) - f(t_0) - \cdots - f(t_{n-1})) = \delta * (f(t_n) - f(t_0)) = \delta * (f(b) - f(a))$.
+\end{proof}
+
+\begin{theorem*}
+    Prove $f$ is integrable.
+\end{theorem*}
+\begin{proof}[Proof of (c)]
+    Fix $\epsilon > 0$.
+
+    By archimedian property, $\exists n \in \mathbb{N} \; \colon 0 < \frac{b-a}{n} < \frac{\epsilon}{f(b) - f(a)}$.
+
+    Let $\delta = \frac{b-a}{n}$.
+
+    Let $P = \{a, a + \delta, a + 2 \delta, \cdots, a + n \delta = a + b - a = b\}$.  Notice that $\forall i \; \colon t_i - t_{i-1} = \delta$.
+
+    Thus,
+    
+    \begin{align*}
+        U(f,P) - L(f,P) & = \delta (f(b) - f(a)) \\
+        &= \frac{b-a}{n} (f(b) - f(a)) \\
+        &< \frac{\epsilon}{f(b) - f(a)} (f(b) - f(a)) \\
+        &= \epsilon \\
+    \end{align*}
+
+    Since $\epsilon > 0$ was arbitrary, by Theorem 13-2, $f$ is integrable on $[a,b]$.
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#6:}} Prove: if $f$ is integrable on $[a,b]$, then $\abs{f}$ is integrable on $[a,b]$.
+
+(Hint: show that $U(\abs{f},P)-L(\abs{f},P) \leq U(f,P)-L(f,P)$ )
+
+\begin{proof}
+    Fix $P = \{t_0, \cdots, t_n\}$ as some partition of $[a,b]$.
+
+    Consider each interval: Fix $1 \leq i \leq n$.
+
+    Cases on $m_i(f), M_i(F)$:
+
+    If $m_i(f) < 0, M_i(f) < 0$, then $m_i(f) = - M_i(|f|)$, and $M_i(f) = - m_i(|f|)$.  Then $M_i(|f|) - m_i(|f|) = M_i(f) - m_i(f)$.
+
+    If $m_i(f) > 0, M_i(f) > 0$, then $m_i(f) = m_i(|f|)$, and $M_i(f) = M_i(|f|)$.  Then $M_i(|f|) - m_i(|f|) = M_i(f) - m_i(f)$.
+
+    If $m_i(f) < 0, M_i(f) > 0, |M_i(f)| \geq |m_i(f)|$, then $m_i(|f|) = 0$ and $M_i(|f|) = M_i(f)$.  Then $M_i(|f|) - m_i(|f|) = M_i(f) \leq M_i(f) - m_i(f)$.
+
+    If $m_i(f) < 0, M_i(f) > 0, |M_i(f)| \leq |m_i(f)|$, then $m_i(|f|) = 0$ and $M_i(|f|) = -m_i(f)$.  Then $M_i(|f|) - m_i(|f|) = -m_i(f) \leq M_i(f) - m_i(f)$.
+
+    Since $i$ was arbitrary, and from cases, $\forall i \; \colon M_i(|f|) - m_i(|f|) \leq M_i(f) - m_i(f)$.
+
+    Then, $U(f,P) - L(f,P) = \sum_{i=1}^{n} (M_i(f) - m_i(f))(t_i - t_{i-1}) \geq \sum_{i=1}^{n} (M_i(|f|) - m_i(|f|))(t_i - t_{i-1}) = U(|f|, P) - L(|f|, P)$.
+
+    Since $P$ was arbitrary, $\forall P \; \colon U(|f|,P) - L(|f|,P) \leq U(f,P) - L(f,P)$.
+
+    Because $f$ is integrable on $[a,b]$, by theorem 13-2, $\forall \epsilon > 0 \; \exists P \; \colon \epsilon > U(f,P) - L(f,P) \geq U(|f|, P) - L(|f|,P)$.
+
+    Thus, $\forall \epsilon > 0 \; \exists P \; \colon U(|f|,P) - L(|f|,P) < \epsilon$.
+
+    Thus, by theorem 13-2, $|f|$ is integrable on $[a,b]$.
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#7:}} Prove: if $f$ and $g$ are integrable on $[a,b]$, then $\max\{f,g\}$ and $\min\{f,g\}$ are integrable on $[a,b]$. 
+
+(Hint: use a past HW problem for expressing the minimum and maximum in terms of absolute values). 
+
+\begin{proof}
+    By definition, $\max\{f, g\} = \frac{f+g+|f-g|}{2}$, and $\min\{f, g\} = \frac{f+g-|f-g|}{2}$.
+
+    By Thm 6, $-g$ is integrable on $[a,b]$.
+
+    By Thm 5, $f-g$ is integrable on $[a,b]$.
+
+    By result of exercise 6, $|f-g|$ is integrable on $[a,b]$.
+
+    By Thm 6, $-|f-g|$ is integrable on $[a,b]$.
+
+    By Thm 5, $f+g$ is integrable on $[a,b]$.
+
+    By Thm 5, $f+g+|f-g|$ and $f+g-|f-g|$ are both integrable on $[a,b]$.
+
+    By Thm 6, $\frac{f+g+|f-g|}{2}$ and $\frac{f+g-|f-g|}{2}$ are both integrable on $[a,b]$.
+
+    Equivicantly, $\max\{f, g\}$ and $\min\{f, g\}$ are both integrable on $[a,b]$.
+\end{proof}
+    
+    
+\end{document}

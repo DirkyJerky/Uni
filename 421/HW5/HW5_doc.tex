@@ -1,0 +1,197 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts, amssymb}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+\usepackage{datetime}
+
+\usepackage{changepage}
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{2}{3}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+\vspace{15pt}
+        
+\noindent\fbox{\textbf{Exercise \#1:}} In this problem we investigate left and right hand limits which are defined as follows. 
+
+\begin{definition*} We write $\lim_{x \rightarrow a^+} f(x) = L$ if for every $\epsilon > 0$ there exists $\delta > 0$ such that: if $x >a$ and $0< \abs{x-a} < \delta$, then $\abs{f(x)-L} < \epsilon$. 
+
+\end{definition*}
+
+\begin{definition*} We write $\lim_{x \rightarrow a^-} f(x) = L$ if for every $\epsilon > 0$ there exists $\delta > 0$ such that: if $x <a$ and $0< \abs{x-a} < \delta$, then $\abs{f(x)-L} < \epsilon$. 
+
+\end{definition*}
+
+Prove the following. 
+
+\begin{theorem*} $\lim_{x \rightarrow a} f(x) = L$ if and only if $\lim_{x \rightarrow a^+} f(x) = L$ and $\lim_{x \rightarrow a^-} f(x) = L$.
+\end{theorem*}
+
+\begin{proof} 
+
+    $(\lim_{x \rightarrow a} f(x) = L \implies \lim_{x \rightarrow a^+} f(x) = L \land \lim_{x \rightarrow a^-} f(x) = L)$:
+
+    \begin{adjustwidth}{3em}{0pt}
+
+    Because $\lim_{x \to a} f(x) = L$, $\forall \epsilon > 0 \; \exists \delta > 0 \; \colon 0 < |x-a| < \delta \implies |f(x) - L| < \epsilon$
+
+    If $0 < |x-a| < \delta$, it follows that $x \neq a$.  Thus either $x>a$ or $x<a$. Then,
+
+    whenever $x > a$, $x > a \land 0 < |x-a| < \delta \equiv 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$.  Thus, $\lim_{x \rightarrow a^+} f(x) = L$.  Since $x \nless a$, $x < a \land 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$, holds because of the falsity of the implicator.  Thus, $\lim_{x \rightarrow a^-} f(x) = L$.
+
+    Likewise, whenever $x < a$, $x < a \land 0 < |x-a| < \delta \equiv 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$.  Thus, $\lim_{x \rightarrow a^-} f(x) = L$.  Since $x \ngtr a$, $x > a \land 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$ holds, because of the falsity of the implicator.  Thus, $\lim_{x \rightarrow a^+} f(x) = L$.
+
+    Thus, $(\lim_{x \rightarrow a} f(x) = L \implies \lim_{x \rightarrow a^+} f(x) = L \land \lim_{x \rightarrow a^-} f(x) = L)$.
+
+    \end{adjustwidth}
+
+    $(\lim_{x \rightarrow a^+} f(x) = L \land \lim_{x \rightarrow a^-} f(x) = L \implies \lim_{x \rightarrow a} f(x) = L)$:
+
+    \begin{adjustwidth}{3em}{0pt}
+
+    Because $\lim_{x \to a^+} f(x) = L$, $\forall \epsilon > 0 \; \exists \delta > 0 \; \colon x>a \land 0 < |x-a| < \delta \implies |f(x) - L| < \epsilon$.
+
+    Because $\lim_{x \to a^-} f(x) = L$, $\forall \epsilon > 0 \; \exists \delta > 0 \; \colon x<a \land 0 < |x-a| < \delta \implies |f(x) - L| < \epsilon$.
+
+    If $0 < |x-a| < \delta$, it follows that $x \neq a$.  Thus either $x>a$ or $x<a$. Then,
+
+        whenever $x > a$, $x > a \land 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon \equiv 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$.  Thus, $\lim_{x \rightarrow a} f(x) = L$.
+
+        Likewise, whenever $x < a$, $x < a \land 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon \equiv 0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$.  Thus, $\lim_{x \rightarrow a} f(x) = L$.
+
+    Thus, $(\lim_{x \rightarrow a} f(x) = L$.
+
+    \end{adjustwidth}
+
+
+\end{proof} 
+
+
+\noindent\fbox{\textbf{Exercise \#2:}} Consider the function 
+$$f(x) = \begin{cases} 0 & \text{if $x$ is irrational} \\
+1 & \text{if $x$ is rational.}
+\end{cases}
+$$
+Using the $\epsilon/\delta$ definition, prove that $\lim_{x \rightarrow a} f(x)$ does not exist for every real number $a$ (and hence $f$ is discontinuous at every real number). 
+
+\begin{proof}
+    Suppose for a contradiction that $\exists a \; \colon \lim_{x \to a} f(x) = L$. 
+    
+    Hence $\forall \epsilon > 0 \; \exists \delta > 0 \; \colon 0 < |x-a| < \delta \implies |f(x) - L| < \epsilon$.
+    
+    Notice that $\forall x \; \colon f(x) \in \{0, 1\}$.
+
+    Let $\epsilon = min\{|L|, |L-1|\}$.
+
+    When $f(x) = 1$, $|f(x)-L| = |1-L| = |L-1| \nless \epsilon = |L-1|$.
+
+    When $f(x) = 0$, $|f(x)-L| = |0-L| = |L| \nless \epsilon = |L|$.
+
+    Thus, $\exists \epsilon$ where $\forall \delta \; \: 0 < |x-a| < \delta \nrightarrow |f(x)-L| < \epsilon$.
+
+    Hence, $\exists a \; \colon \lim_{x \to a} f(x) = L$ is a contradiction, and $\forall a \; \colon \lim_{x \to a} f(x) \text{ DNE}$.
+
+\end{proof} 
+
+
+
+\noindent\fbox{\textbf{Exercise \#3:}} Prove the following
+\begin{enumerate}[(a)]
+\item The function $f(x) = x$ is continuous.
+\item If $n$ is a natural number, then the function $f_n(x) = x^n$ is continuous. 
+\item If $g$ is a polynomial, then $g$ is continuous on $\Rb$.
+\item If $h$ is a rational function, then $h$ is continuous at every point in its domain. 
+\end{enumerate}
+
+(Hint: b,c,d should follow quickly from results in class) 
+
+\begin{proof}[Proof of (a)] 
+    "$f(x) = x$ is continuous" means $\forall a \; \forall \epsilon > 0 \; \exists \delta > 0\; \colon 0 < |x-a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+
+    Fix $a$. Fix $\epsilon$. Let $\delta = \epsilon$.  If $0 < |x-a| < \delta$, then $|f(x) - f(a)| = |x-a| < \delta = \epsilon$.
+
+    Since $\epsilon$ was arbitrary, $\forall \epsilon > 0 \; \exists \delta > 0 \; \colon 0 < |x-a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+
+    Since $a$ was arbitrary, $\forall a \; \forall \epsilon > 0 \; \exists \delta > 0 \; \colon 0 < |x-a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+
+\end{proof} 
+
+\begin{proof}[Proof of (b)] 
+    Because $f(x) = x$ is continuous, and using the theorem proved in class, it follows from induction that $f(x) = x^2 = x \cdot x$ is continuous, $f(x) = x^3 = x^2 \cdot x$ is continuous, $\cdots$.  Hence, $\forall n \in \mathbb{N} \; \colon f(x) = x^n$ is continuous. 
+\end{proof} 
+
+\begin{proof}[Proof of (c)] 
+    By definition, $g(x) = a_0 + a_1 \cdot x + a_2 \cdot x^2 + \cdots + a_n \cdot x^n$ for some numbers $a_0, a_1, \cdots, a_n$.
+
+    Because the functions $f(x) = a_0$, $f(x) = a_1$, $\cdots$, $f(x) = a_n$ are continuous, and the functions $f(x) = x$, $f(x) = x^2$, $\cdots$, $f(x) = x^n$ are continuous, it follows from the theorem proved in class that the functions $f(x) = a_0$, $f(x) = a_1 \cdot x$, $f(x) = a_2 \cdot x^2$, $\cdots$, $f(x) = a_n \cdot x^n$ are continuous.
+
+    It follows from induction using the theorem proved in class that the functions $f(x) = a_0 + a_1 \cdot x$, $f(x) = a_0 + a_1 \cdot x + a_2 \cdot x^2 = (a_0 + a_1 \cdot x) + a_2 \cdot x^2$, $\cdots$, $f(x) = (a_0 + a_1 \cdot x + \cdots + a_{n-1} \cdot x^{n-1}) + a_n \cdot x^n = a_0 + a_1 \cdot x + \cdots + a_n \cdot x^n$ are continuous.
+\end{proof} 
+
+\begin{proof}[Proof of (d)] 
+    Notice that, by definintion, the domain of a rational function $f(x) = \frac{g(x)}{h(x)}, g,h \text { are polynomials }$ is wherever $h(x) \neq 0$.
+
+    It follows from the theorem proved in the class, because $g(x)$ and $h(x)$ are polynomials that are continuous, that $f(x)$ is continuous in its domain.
+\end{proof} 
+
+\noindent\fbox{\textbf{Exercise \#4:}} Spivak, Chapter 6, Problem 3 (a). 
+
+\begin{theorem*} Given a function $f$ where $\forall x \; \colon |f(x)| \leq |x|$, $f$ is continuous at $0$.
+\end{theorem*}
+
+\begin{proof} 
+    Notice that when $x=0$, $|f(0)| \leq |0| \implies f(0) = 0$
+    
+    $\lim_{x \to 0} f(x) = 0$ means $\forall \epsilon \; \exists \delta \; \colon |x| < \delta \implies |f(x)| < \epsilon$.
+
+    Fix $\epsilon$. Let $\delta = \epsilon$.
+
+    If $|x| < \delta$, then $|f(x)| \leq |x| < \delta = \epsilon$.
+
+    Since $\epsilon$ was arbitrary,  $\lim_{x \to 0} f(x) = 0$.
+\end{proof} 
+
+    
+    
+\end{document}

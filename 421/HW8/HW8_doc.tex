@@ -1,0 +1,251 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage[usenames]{color}
+
+\usepackage{datetime}
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{10}{3}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+
+\noindent\fbox{\textbf{Exercise \#1:}} Prove: If $\lim_{x \rightarrow a} f(x) = \infty$, then $\lim_{x \rightarrow a} \frac{1}{f(x)} = 0$. 
+
+\begin{proof} Fix $\epsilon > 0$. Because $\lim_{x \to a} f(x) = \infty$, $\exists \delta > 0 \; \colon 0 < |x-a| < \delta \implies f(x) > \frac{1}{\epsilon}$.
+
+    Then if $0 < |x-a| < \delta$, then $f(x) > \frac{1}{\epsilon} \implies 0 < \frac{1}{f(x)} < \epsilon \implies |\frac{1}{f(x)} - 1| = \frac{1}{f(x)} < \epsilon$.
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \to a} \frac{1}{f(x)} = 0$
+\end{proof}
+
+\noindent\fbox{\textbf{Exercise \#2:}} Suppose $\lim_{x \rightarrow a} f(x) = 0$ and there exists $\delta_0 > 0$ such that $f$ is positive on $(a-\delta_0, a+\delta_0)$. Prove that $\lim_{x \rightarrow a} \frac{1}{f(x)} = \infty$. 
+
+\begin{proof} Fix $M > 0$. Because $\lim_{x \to a} f(x) = 0$, $\exists \delta_1 \; \colon 0 < |x-a| < \delta_1 \implies |f(x) - 0| < \frac{1}{M}$.
+
+    Let $\delta = min\{\delta_0, \delta_1\}$.
+
+    Notice that $0 < |x-a| < \delta \implies - \delta < x-a < \delta \implies a - \delta < x < a + \delta \implies a - \delta_0 \leq a - \delta < x < a + \delta \leq a + \delta_0 \implies f(x) > 0 \implies \frac{1}{f(x)} > 0$.
+
+    Then if $0 < |x-a| < \delta$, then $|f(x) - 0| = |f(x)| < \frac{1}{M} \implies |\frac{1}{f(x)}| > M \implies \frac{1}{f(x)} > M$
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow a} \frac{1}{f(x)} = \infty$. 
+\end{proof}
+
+  \noindent\fbox{\textbf{Exercise \#3:}} If $\lim_{x \rightarrow \infty} f(x)=L$,  then 
+\begin{align*}
+\lim_{x \rightarrow 1^+} f\left(\frac{1}{x-1}\right) = L.
+\end{align*}
+
+\begin{proof} Fix $\epsilon > 0$. Because $\lim{x \to \infty} f(x) = L$, $\exists N > 0 \; \colon x > N \implies |f(x) - L| < \epsilon$.
+
+    Let $\delta = \frac{1}{N}$.
+
+    Then if $x > 1 \land 0 < |x-1| < \delta$, then $0 < x-1 < \delta$, and $0 < x-1 < \delta \implies \frac{1}{x-1} > \frac{1}{\delta} = N \implies |f(\frac{1}{x-1}) - L| < \epsilon$.
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow 1^+} f\left(\frac{1}{x-1}\right) = L$.
+\end{proof}
+  
+    \noindent\fbox{\textbf{Exercise \#4:}} If $\lim_{x \rightarrow \infty} f(x)=L$,  then 
+\begin{align*}
+\lim_{x \rightarrow 1^+} f\left(\frac{1}{x^2-1}\right) = L.
+\end{align*}
+
+\begin{proof} Fix $\epsilon > 0$. Because $\lim_{x \to \infty} f(x) = L$, $\exists N > 0 \; \colon x > N \implies |f(X) - L| < \epsilon$.
+
+    Let $\delta = min\{1, \frac{1}{3N} \}$.
+
+    If $x>0 \land 0 < |x-1| < \delta$, then $1 < x < 1 + \delta \leq 2$.
+
+    Then $0 < x-1 < \delta \leq \frac{1}{3N}$, and $2 < x+1 \leq 3$.
+
+    So, $\frac{1}{x^2 - 1} = \frac{1}{x-1} * \frac{1}{x+1} > \frac{1}{\frac{1}{3N}} * \frac{1}{3} = N \implies |f(\frac{1}{x^2 - 1}) - L| < \epsilon$.
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow 1^+} f\left(\frac{1}{x^2-1}\right) = L$.
+\end{proof}
+
+
+    \noindent\fbox{\textbf{Exercise \#5:}} If $\lim_{x \rightarrow \infty} f(x)=\infty$ and $\lim_{x \rightarrow \infty} g(x) =L$,  then 
+\begin{align*}
+\lim_{x \rightarrow \infty} g\left(f(x)\right) = L.
+\end{align*}
+
+\begin{proof} Fix $\epsilon > 0$.
+
+    Since $\lim_{x \to \infty} g(x) = L$, $\exists N_2 > 0 \; \colon x > N_2 \implies |g(x) - L| < \epsilon$.
+
+    Since $\lim_{x \to \infty} f(x) = \infty$, $\exists N_1 > 0 \; \colon x > N_1 \implies f(x) > N_2$.
+
+    So, $x > N_1 \implies f(x) > N_2 \implies |g(f(x)) - L| < \epsilon$.
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow \infty} g\left(f(x)\right) = L$.
+\end{proof}
+
+\noindent\fbox{\textbf{Exercise \#6:}} Suppose $f$ is continuous at $x=2$ and $f(2)=5$. 
+\begin{enumerate}[(a)]
+\item Prove, using the results in class, that 
+\begin{align*}
+\lim_{x \rightarrow 1} f(3x-1) = 5.
+\end{align*}
+\item Prove, using an $\epsilon/\delta$ proof, that 
+\begin{align*}
+\lim_{x \rightarrow 1} f(3x-1) = 5.
+\end{align*}
+\end{enumerate}
+  
+\begin{proof}[Proof of (a)] 
+    $g(x) = 3x -1$ is a polynomial, that is continunous on $\mathbb{R}$.  By the property of continuous functions proven in class, $\lim_{x \to 1} f(3x - 1) = \lim_{x \to 1} f(g(x)) = f(g(1)) = f(2) = 5$.
+\end{proof}
+  
+\begin{proof}[Proof of (b)] Fix $\epsilon > 0$. Since $f(x)$ is continuous at $x=2$, $\exists \delta_1 \; \colon |x-2| < \delta_1 \implies |f(x) - 5| < \epsilon$.
+
+    Let $\delta = \frac{\delta_1}{3}$.
+
+    If $0 < |x-1| < \delta = \frac{\delta_1}{3}$, then $|(3x-1)-2| = |3x-3| = 3|x-1| < 3 \delta = \delta_1$, then $|f(3x-1) - 5| < \epsilon$.
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow 1} f(3x-1) = 5$.
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#7:}} Suppose $f$ is continuous at $x=3$ and $f(3)=7$. 
+\begin{enumerate}[(a)]
+\item Prove, using the results in class, that 
+\begin{align*}
+\lim_{x \rightarrow 1} f(x^2+x+1) = 7.
+\end{align*}
+\item Prove, using an $\epsilon/\delta$ proof, that 
+\begin{align*}
+\lim_{x \rightarrow 1} f(x^2+x+1) = 7.
+\end{align*}
+\end{enumerate}
+  
+\begin{proof}[Proof of (a)] 
+
+    $g(x) = x^2 + x + 1$ is a polynomial, that is continunous on $\mathbb{R}$.  By the property of continuous functions proven in class, $\lim_{x \to 1} f(x^2 + x + 1) = \lim_{x \to 1} f(g(x)) = f(g(1)) = f(3) = 7$.
+
+\end{proof}
+  
+\begin{proof}[Proof of (b)] Fix $\epsilon > 0$. Since $f(x)$ is continuous at $x=3$, $\exists \delta_1 \; \colon |x-3| < \delta_1 \implies |f(x) - 7| < \epsilon$.
+
+    Let $\delta = min\{1, \frac{\delta_1}{4}\}$.
+
+    If $0 < |x-1| < \delta$, then $|x^2 + x + 1 - 3| = |x^2 + x - 2| = |x+2| |x-1| = |x-1+3| |x-1| \leq (|x-1| + 3) |x-1| \leq (1 + 3) \frac{\delta_1}{4} = \delta_1 \implies |f(x^2 + x + 1) - 7| < \epsilon$.
+
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow 1} f(x^2+x+1) = 7$.
+\end{proof}
+
+
+  
+  \noindent\fbox{\textbf{Exercise \#8:}} Find an example where $\lim_{x \rightarrow 3} f(x) = 7$, $\lim_{x \rightarrow 1} g(x) = 3$, and $\lim_{x \rightarrow 1} f(g(x)) \neq 7$.  
+  
+\begin{proof}[Example] 
+    Let $f(x) = \{x+4 \colon x \neq 3, 8 \colon x = 3 \}$. Then $\lim_{x \rightarrow 3} f(x) = 7$.
+
+    Let $g(x) = 3$. Then $\lim_{x \rightarrow 1} g(x) = 3$
+
+    Then $\lim_{x \to 1} f(g(x)) = \lim_{x \to 1} f(3) = 8 \neq 7$.
+
+\end{proof}
+  
+    \noindent\fbox{\textbf{Exercise \#9:}} Prove: If $\lim_{x \rightarrow 3} f(x) = 7$, $\lim_{x \rightarrow 1} g(x) = 3$, and $g(x) \neq 3$ for all $x$, then $\lim_{x \rightarrow 1} f(g(x))=7$. 
+
+
+\begin{proof} Fix $\epsilon > 0$.
+
+    Because $\lim_{x \rightarrow 3} f(x) = 7$, $\exists \delta_1 > 0 \; \colon 0 < |x-3| < \delta_1 \implies |f(x) - 7| < \epsilon$.
+
+    Because $\lim_{x \rightarrow 1} g(x) = 3$, $\exists \delta_2 > 0 \; \colon 0 < |x-1| < \delta_2 \implies |g(x) - 3| < \delta_1$.
+
+    Let $\delta = \delta_2$.
+
+    If $0 < |x-1| < \delta = \delta_2$, then $|g(x) - 3| < \delta_1$.
+
+    Since $g(x) \neq 3$, $0 < |g(x) -3|$.
+
+    So, $0 < |g(x) - 3| < \delta_1 \implies |f(g(x)) - 7| < \epsilon$.
+    
+    Since $\epsilon > 0$ was arbitrary, $\lim_{x \rightarrow 1} f(g(x))=7$. 
+
+\end{proof}
+
+    \noindent\fbox{\textbf{Exercise \#10:}} 
+    \begin{enumerate}[(a)]
+    \item Prove: If $f$ is continuous on $\Rb$, $\lim_{x \rightarrow -\infty} f(x) = L_1$, and $\lim_{x \rightarrow \infty} f(x) = L_2$ (where $L_1, L_2$ are real numbers), then $f$ is bounded above on $\Rb$. 
+\item Find an example where: $f$ is continuous on $\Rb$, $\lim_{x \rightarrow -\infty} f(x) = L_1$, $\lim_{x \rightarrow \infty} f(x) = L_2$ (where $L_1, L_2$ are real numbers), and there does not exist a number $y \in \Rb$ such that $f(x) \leq f(y)$ for all $x \in \Rb$. 
+\end{enumerate} 
+
+\begin{proof}[Proof of (a)] 
+    Since $\lim_{x \to - \infty} f(x) = L_1$, $\exists N_1 > 0 \; \colon x < -N_1 \implies |f(x) - L_1| < 1$.
+
+    Since $\lim_{x \to \infty} f(x) = L_2$, $\exists N_2 > 0 \; \colon x > N_2 \implies |f(x) - L_2| < 1$.
+
+    By Theorem 7.2, $f$ is bounded above on $[-N_1, N_2]$.
+
+    So, $\exists M \; \forall x \in [-N_1, N_2] \; \colon f(x) \leq M$.
+
+    Then $f$ is bounded above by $max \{ L_1 + 1, L_2 + 1, M \}$.
+\end{proof}
+
+\begin{proof}[Example for (b)]
+    Let $f(x) = - \frac{1}{x^2 + 1}$.
+
+    Then $\lim_{x \to \infty} f(x) = \lim_{x \to - \infty} f(x) = \sup(range(f)) = 0$, and $\forall x \; \colon f(x) \neq 0$.
+\end{proof}
+
+
+    
+
+
+
+
+
+    
+    
+\end{document}

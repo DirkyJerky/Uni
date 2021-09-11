@@ -1,0 +1,268 @@
+% This is a template for doing homework assignments in LaTeX, cribbed from M. Frenkel (NYU) and A. Hanhart (UW-Madison)
+
+\documentclass{article} % This command is used to set the type of document you are working on such as an article, book, or presenation
+
+\usepackage[margin=1in]{geometry} % This package allows the editing of the page layout. I've set the margins to be 1 inch. 
+
+\usepackage{amsmath, amsfonts}  % The first package allows the use of a large range of mathematical formula, commands, and symbols.  The second gives some useful mathematical fonts.
+
+\usepackage[usenames]{color}
+
+\usepackage{graphicx}  % This package allows the importing of images
+
+\usepackage{datetime}
+
+\usepackage[shortlabels]{enumitem} % This package allows for different types of labels in the enumerate environment 
+
+
+%This allows us to use the theorem and proof environment 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+
+%Custom commands.  
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} %absolute value command
+
+%Custom symbols
+\newcommand{\Rb}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large{
+        \textbf{Assignment \#3}
+
+        UW-Madison MATH 421
+    }
+    
+    \vspace{5pt}
+        
+    \normalsize{
+        GEOFF YOERGER
+
+        \usdate
+        \formatdate{13}{4}{2021}
+    }
+    
+    \vspace{15pt}
+\end{center}
+
+\noindent\fbox{\textbf{Exercise \#1:}} Spivak, Chapter 11, Problem 13
+
+\begin{theorem*}
+    $\forall x \in \mathbb{R}^+ \; \colon x + \frac{1}{x} \geq 2$
+\end{theorem*}
+
+\begin{proof}
+    Let $f(x) = x + \frac{1}{x}$.
+
+    Then $f'(x) = 1 - \frac{1}{x^2}$.
+
+    By the algorithm for finding min values of $f$ on $(0, \infty)$:
+
+    $(1)$: Critical points are where
+
+    \begin{align*}
+        0 & = 1 - \frac{1}{x^2} \\
+        1 & =  \frac{1}{x^2} \\
+        x^2 & = 1 \\
+        x & = 1 \\
+    \end{align*}
+
+    $(2)$: No points of non-differentiability in $(0, \infty)$.
+
+    $(3)$:
+
+    \begin{align*}
+        f(1) & = 2 \\
+        \lim_{x \to 0^+} f(x) & = \infty \\
+        \lim_{x \to \infty} f(x) & = \infty \\
+    \end{align*}
+
+    Thus $f$'s minimum value is $2$.
+
+    Hence $\forall x \in \mathbb{R}^+ \; \colon f(x) \geq 2$
+
+    $\implies \forall x \in \mathbb{R}^+ \; \colon x + \frac{1}{x} \geq 2$.
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#2:}} Spivak, Chapter 11, Problem 26 
+
+\begin{theorem*}
+    Suppose $f$ is a polynomial of degree $n$, with $f \geq 0$. (Hence, $n$ must be even).
+
+    $f + f' + f'' + \cdots + f^{(n)} \geq 0$.
+\end{theorem*}
+
+\begin{proof} 
+    Let $g = f + f^\prime + \dots + f^{(n)}$.
+    
+    Because $f$ is a polynomial,
+
+    $\forall n \; \colon f^{(n)}$ is a polynomial,
+
+    and $g$ is a polynomial.
+
+    Hence $g$ is differentiable and continuous everywhere.
+
+    Notice that $g' = f' + f'' + \cdots + f^{(n)} + f^{(n+1)} = f' + f'' + \cdots + f^{(n)}$.
+
+    Hence, $g = f + g'$.
+
+    Because $f$ has an even degree, so does $g$, and
+
+    By a theorem proved in class or hwk, $\exists x \; \colon x$ is a minimum point of $g$ on $\mathbb{R}$.
+
+    Thus $g'(x) = 0$.
+
+    Further, $g(y) = f(y) + g'(y) = f(y)$.
+
+    Because $f(y) \geq 0$, $g(y) \geq 0$, and since $g(y)$ is the minimum value, $\forall x \; \colon g(x) = f(x) + f'(x) + \cdots + f^{(n)}(x) \geq 0$.
+\end{proof}
+
+\noindent\fbox{\textbf{Exercise \#3:}} Spivak, Chapter 11, Problem 30 (a) 
+
+\begin{theorem*}
+    Suppose $\forall x \; \colon f'(x) > g'(x)$, and $f(a) = g(a)$
+
+    $x > a \implies f(x) > g(x)$
+    $x < a \implies f(x) < g(x)$
+\end{theorem*}
+
+\begin{proof}
+    Let $h = f - g$.
+
+    Notice that $h(a) = f(a) - g(a) = 0$.
+
+    Notice that $\forall x \; \colon f'(x) > g'(x) \implies \forall x \; \colon h'(x) > 0$.
+
+    For $x < a$, consider mean value theorem on $[x,a]$.
+
+    Thus, $\exists y \in (x,a) \; \colon h'(y) = \frac{h(a) - h(x)}{a -x} = \frac{-h(x)}{a-x}$.
+
+    Since $h'(y) > 0$ and $x < a \implies a-x > 0$, then $-h(x) > 0 \implies h(x) < 0 \implies f(x) < g(x)$.
+    
+    Thus $x < a \implies f(x) < g(x)$.
+
+    For $x > a$, consider mean value theorem on $[a,x]$.
+
+    Thus, $\exists y \in (a,x) \; \colon h'(y) = \frac{h(x) - h(a)}{x - a} = \frac{h(x)}{x-a}$.
+
+    Since $h'(y) > 0$ and $x > a \implies x-a > 0$, then $h(x) > 0 \implies f(x) > g(x)$.
+
+    Thus $x > a \implies f(x) > g(x)$.
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#4:}} Spivak, Chapter 11, Problem 38
+
+\begin{theorem*}
+    If $\frac{a_0}{1} + \frac{a_1}{2} + \cdots + \frac{a_n}{n+1} = 0$,
+
+    Then $\exists x \in (0,1) \; \colon a_0 + a_1 x + \cdots + a_n x^n = 0$.
+\end{theorem*}
+
+\begin{proof}
+    Let $f(x) \frac{a_0}{1} x + \frac{a_1}{2} x^2 + \cdots + \frac{a_n}{n+1} x^{n+1}$,
+
+    Notice that $f(0) = 0$, and $f(1) = \frac{a_0}{1} + \frac{a_1}{2} + \cdots + \frac{a_n}{n+1} = 0$.
+
+    Notice that $f'(x) = a_0 + a_1 x + \cdots + a_n x^n$.
+
+    By Rolles theorem, $\exists y \in (0,1) \; \colon f'(y) = 0$.
+
+    $\implies \exists y \in (0,1) \; \colon a_0 + a_1 x + \cdots + a_n x^n = 0$.
+
+\end{proof}
+
+\noindent\fbox{\textbf{Exercise \#5:}} Spivak, Chapter 11, Problem 43
+
+\begin{theorem*}
+    Suppose $f$ is a function where $\forall x > 0 \; \colon f'(x) = \frac{1}{x}$, and $f(1) = 0$.
+
+    $\forall x,y > 0 \; \colon f(xy) = f(x) + f(y)$
+\end{theorem*}
+
+\begin{proof}
+    Fix $y > 0$.
+
+    Let $g(x) = f(xy)$
+
+    Then $g'(x) = y * f'(xy) = y * \frac{1}{xy} = \frac{1}{x} = f'(x)$.
+
+    By Corollary 2 of Thm 11-4, $f(x) = g(x) + c$ for some $c$.
+
+    Note that $f(1) = 0 = g(1) + c \implies g(1) = -c$, and $g(1) = f(1 * y) = f(y)$.
+
+    Thus $f(x) = g(x) - c = g(x) - f(y)$
+
+    $\implies g(x) = f(xy) = f(x) + f(y)$.
+
+    Since $y > 0$ was arbitrary,
+
+    $\forall x,y > 0 \; \colon f(xy) = f(x) + f(y)$
+\end{proof}
+
+
+\noindent\fbox{\textbf{Exercise \#6:}} Prove that $ \frac{1}{21}  < \sqrt{101} - 10 < \frac{1}{20}$
+
+\begin{proof}
+    Let $f(x) = \sqrt{x}$.
+
+    Consider mean value theorem of $f$ on $(100,101)$.
+
+    Thus $\exists c \; \colon f'(c) = \frac{1}{2 \sqrt{c}} = \frac{\sqrt{101} - \sqrt{100}}{101 - 100} = \sqrt{101} - 10$.
+
+    Thus,
+    
+    \begin{align*}
+        & 100 < x < 101 \\
+        \implies & 100 < x < 110.25 \\
+        \implies & 10 < \sqrt{x} < 10.5 \\
+        \implies & \frac{1}{10} < \frac{1}{\sqrt{x}} < \frac{1}{10.5} \\
+        \implies & \frac{1}{20} < \frac{1}{2 \sqrt{x}} < \frac{1}{21} \\
+        \implies & \frac{1}{20} < \sqrt{101} - 10 < \frac{1}{21} \\
+    \end{align*}
+\end{proof}
+
+\noindent\fbox{\textbf{Exercise \#7:}} Spivak, Chapter 11, Problem 64
+
+\begin{theorem*}
+    Suppose that $f(0) = 0$, and $f'$ is increasing.
+
+    $g(x) = f(x)/x)$ is increasing on $(0, \infty)$
+\end{theorem*}
+
+\begin{proof}
+    Let $g(x) = \frac{f(x)}{x}$.
+
+    Thus, $g'(x) = \frac{x f'(x) - f(x)}{x^2}$.
+
+    Fix $N > 0$.
+
+    Consider mean value theorem of $f$ on $(0, N)$.
+
+    Thus, $\exists c \in (0, N) \; \colon f'(c) = \frac{f(N) - f(0)}{N - 0} = \frac{f(N)}{N} \implies N f'(c) = f(N)$.
+
+    Since $c < N$ and $N > 0$, $f'(c) < f'(N) \implies N f'(c) < N f'(N)$.
+
+    Hence, $f(N) < N f'(N) \implies N f'(N) - f(N) > 0$.
+
+    Since $N > 0$, $g'(N) = \frac{N f'(N) - f(N)}{N^2} > 0$.
+
+    Since $N > 0$ was arbitrary, $\forall N > 0 \; \colon g'(N) > 0$.
+
+    By Corollary 3 of Them 11-4, $g(x) = \frac{f(x)}{x}$ is increasing on $(0, \infty)$.
+\end{proof}
+
+\end{document}

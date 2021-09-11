@@ -1,0 +1,9 @@
+void main()[sp=fp-8]{
+    cout << ("a" == "abc");
+    cout << ("a" == "A");
+    cout << ("a" == "a");
+    cout << ("abc" == "abc");
+    cout << ("" == "abc");
+    cout << ("" == "");
+}
+
